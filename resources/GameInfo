@@ -1,0 +1,110 @@
+Game board: 913mm x 913mm
+Range Ruler: 300mm [100mm per 1 range]
+Ship base: 40mm
+
+Ship movement based on Local Coordinate System;
+
+Prior to move, P0 is at 0,0; LCS Theta with GCS is in last known position; 0 = equal to GCS with the ship pointed North.
+Moving: Select the template and modify the points as seen below; convert LCS to GCS with:
+    x=Xcosθ+Ysinθ
+    y=−Xsinθ+Ycosθ
+Then recalculate LCS theta with GCS for the moved ship and reset P0 to 0,0; P1 to 40,0 etc:
+Add new theta to last theta module 2 pi.
+
+1F
+    p[0,1,2,3] y + 80
+2F
+    p[0,1,2,3] y + 120
+3F
+    p[0,1,2,3] y + 160
+4F
+    p[0,1,2,3] y + 200
+5F
+    p[0,1,2,3] y + 200
+
+2K
+    p[0,1] y + 160
+    p[2,3] y + 80
+3K
+    p[0,1] y + 200
+    p[2,3] y + 120
+4K
+    p[0,1] y + 240
+    p[2,3] y + 160
+5K
+    p[0,1] y + 280
+    p[2,3] y + 200
+
+1CL
+    p0 x - 19; y + 84
+    p1 x - 29.284; y + 112.284
+    p2 x - 47.284; y + 72.284
+    p3 x - 59; y + 100.569
+2CL
+    p0 x - 34; y + 118
+    p1 x - 44.284; y + 146.284
+    p2 x - 62.284; y + 106.284
+    p3 x - 74; y + 134.568
+3CL
+    p0 x - 49; y + 151
+    p1 x - 59.284; y + 179.284
+    p2 x - 77.284; y + 139.284
+    p3 x - 89; y + 167.568
+
+1CR
+    p0 x + 29.284; y + 112.284
+    p1 x + 19; y + 84
+    p2 x + 59; y + 100.569
+    p3 x + 47.284; y + 72.284
+2CR
+    p0 x + 44.284; y + 146.284
+    p1 x + 34; y + 118
+    p2 x + 74; y + 134.568
+    p3 x + 62.284; y + 106.284
+3CR
+    p0 x + 59.284; y + 179.284
+    p1 x + 49; y + 151
+    p2 x + 89; y + 167.568
+    p3 x + 77.284; y + 139.284
+
+1BL
+    p0 x - 17; y + 56
+    p1 x - 57; y + 96
+    p2 x - 57; y + 16
+    p3 x - 97; y + 56
+2BL
+    p0 x - 44; y + 81
+    p1 x - 84; y + 121
+    p2 x - 84; y + 41
+    p3 x - 124; y + 81
+3BL
+    p0 x - 72; y + 107
+    p1 x - 112; y + 147
+    p2 x - 112; y + 67
+    p3 x - 152; y + 107
+
+1BR
+    p0 x + 57; y + 96
+    p1 x + 17; y + 56
+    p2 x + 97; y + 56
+    p3 x + 57; y + 16
+2BR
+    p0 x + 84; y + 121
+    p1 x + 44; y + 81
+    p2 x + 124; y + 81
+    p3 x + 84; y + 41
+3BR
+    p0 x + 112; y + 147
+    p1 x + 72; y + 107
+    p2 x + 152; y + 107
+    p3 x + 112; y + 67
+
+2.55px/mm
+
+
+Base:
+|                         |
+|_______----------________|
+|10.59mm; 18.82mm; 10.59mm|
+
+28.284271247461900976033774484194
