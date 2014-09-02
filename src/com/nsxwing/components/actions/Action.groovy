@@ -1,7 +1,7 @@
-package com.nsxwing.components.actions;
+package com.nsxwing.components.actions
 
 /**
- * Created by Christopher on 9/1/14.
+ * Interface governing the contract that actions should follow.
  */
 public interface Action {
 }

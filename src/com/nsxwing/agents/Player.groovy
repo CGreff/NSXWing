@@ -1,7 +1,12 @@
-package com.nsxwing.agents;
+package com.nsxwing.agents
+
+import com.nsxwing.components.meta.Faction
 
 /**
- * Created by Christopher on 9/1/14.
+ * Object in charge of the individual Player Agents. Has a Faction and a point total.
  */
 public class Player {
+    Set<PlayerAgent> agents
+    Faction faction
+    int costOfList
 }

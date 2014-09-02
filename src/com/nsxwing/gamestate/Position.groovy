@@ -1,7 +1,7 @@
-package com.nsxwing.gamestate;
+package com.nsxwing.gamestate
 
 /**
- * Created by Christopher on 8/7/14.
+ * Marks a given ship position using the coordinates of its 4 corners.
  */
 public class Position {
     Coordinate lowerLeft

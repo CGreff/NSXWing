@@ -1,7 +1,7 @@
-package com.nsxwing.gamestate;
+package com.nsxwing.gamestate
 
 /**
- * Created by Christopher on 8/7/14.
+ * Class describing the board dimensions. (3' x 3')
  */
 public class Board {
     static final int X_SIZE = 913

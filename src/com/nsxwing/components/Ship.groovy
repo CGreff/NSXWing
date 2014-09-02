@@ -1,8 +1,6 @@
-package com.nsxwing.components;
+package com.nsxwing.components
 
-import com.nsxwing.movement.Movement;
-
-import java.util.Set;
+import com.nsxwing.movement.Movement
 
 /**
  * Class describing a Ship and its contained fields.

@@ -1,4 +1,4 @@
-package com.nsxwing.gamestate;
+package com.nsxwing.gamestate
 
 /**
  * Enum describing the different phases in the game.

@@ -1,12 +1,17 @@
-package com.nsxwing.movement;
+package com.nsxwing.movement
 
-import com.nsxwing.gamestate.Position;
+import com.nsxwing.gamestate.Position
 
 /**
- * Created by Christopher on 8/7/14.
+ * Implementation of the Hard Turn that goes 1-3 distance.
  */
 public class HardTurn implements Movement {
-    int distance
+
+    private final int distance
+
+    HardTurn(int distance) {
+        this.distance = distance
+    }
 
     @Override
     public void move(Position position) {

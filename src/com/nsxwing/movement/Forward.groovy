@@ -1,12 +1,17 @@
-package com.nsxwing.movement;
+package com.nsxwing.movement
 
-import com.nsxwing.gamestate.Position;
+import com.nsxwing.gamestate.Position
 
 /**
- *
+ * Implementation of Movement that goes forward 1-5 distance.
  */
 public class Forward implements Movement {
-    int distance
+
+    private final int distance
+
+    Forward(int distance) {
+        this.distance = distance
+    }
 
     @Override
     public void move(Position position) {

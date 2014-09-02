@@ -1,7 +1,7 @@
-package com.nsxwing.gamestate;
+package com.nsxwing.gamestate
 
 /**
- * Created by Christopher on 8/7/14.
+ * Simple class used to mark x and y coordinates of a point.
  */
 public class Coordinate {
     int x

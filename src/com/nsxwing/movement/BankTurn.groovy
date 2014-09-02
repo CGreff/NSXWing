@@ -3,13 +3,13 @@ package com.nsxwing.movement
 import com.nsxwing.gamestate.Position
 
 /**
- * Implementation of Movement that does a K-turn with distance 1-5 (due to pilot abilities).
+ * Implementation of Movement that does a 45 degree Bank turn, distance 1-3.
  */
-public class Koiogran implements Movement {
+public class BankTurn implements Movement {
 
     private final int distance
 
-    Koiogran(int distance) {
+    BankTurn(int distance) {
         this.distance = distance
     }
 

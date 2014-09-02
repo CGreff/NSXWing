@@ -1,6 +1,6 @@
-package com.nsxwing.movement;
+package com.nsxwing.movement
 
-import com.nsxwing.gamestate.Position;
+import com.nsxwing.gamestate.Position
 
 /**
  * Interface implemented by the different types of movements.
