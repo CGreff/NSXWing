@@ -1,96 +1,96 @@
-Academy Pilot,TIE Fighter,1,2,3,3,0,12,MO
-Obsidian Squadron Pilot,TIE Fighter,3,2,3,3,0,13,MO
-Black Squadron Pilot,TIE Fighter,4,2,3,3,0,14,MO,E
-Night Beast,TIE Fighter,5,2,3,3,0,15,MO
-Winged Gundark,TIE Fighter,5,2,3,3,0,15,MO
-Backstabber,TIE Fighter,6,2,3,3,0,16,MO
-Dark Curse,TIE Fighter,6,2,3,3,0,16,MO
-Mauler Mithel,TIE Fighter,7,2,3,3,0,17,MO,E
-Howlrunner,TIE Fighter,8,2,3,3,0,18,MO,E
-Tempest Squadron Pilot,TIE Advanced,2,2,3,3,2,21,MO,MI
-Storm Squadron Pilot,TIE Advanced,4,2,3,3,2,23,MO,MI
-Maarek Stele,TIE Advanced,7,2,3,3,2,27,MO,E,MI
-Darth Vader,TIE Advanced,9,2,3,3,2,29,MO,E,MI
-Alpha Squadron Pilot,TIE Interceptor,1,3,3,3,0,18,MO
-Avenger Squadron Pilot,TIE Interceptor,3,3,3,3,0,20,MO
-Saber Squadron Pilot,TIE Interceptor,4,3,3,3,0,21,MO,E
-Royal Guard Pilot,TIE Interceptor,6,3,3,3,0,22,MO,E,TI
-Fel's Wrath,TIE Interceptor,4,3,3,3,0,23,MO,TI
-Lieutenant Lorrir,TIE Interceptor,5,3,3,3,0,23,MO,TI
-Kir Kanos,TIE Interceptor,6,3,3,3,0,24,MO,TI
-Tetran Cowall,TIE Interceptor,7,3,3,3,0,24,MO,E,TI
-Turr Phennir,TIE Interceptor,7,3,3,3,0,25,MO,E,TI
-Carnor Jax,TIE Interceptor,8,3,3,3,0,26,MO,E,TI
-Soontir Fel,TIE Interceptor,9,3,3,3,0,27,MO,E,TI
-Scimitar Squadron Pilot,TIE Bomber,2,2,2,6,0,16,MO,TO,TO,MI,MI,B
-Gamma Squadron Pilot,TIE Bomber,4,2,2,6,0,18,MO,TO,TO,MI,MI,B
-Captain Jonus,TIE Bomber,6,2,2,6,0,22,MO,E,TO,TO,MI,MI,B
-Major Rhymer,TIE Bomber,7,2,2,6,0,26,MO,E,TO,TO,MI,MI,B
-Delta Squadron Pilot,TIE Defender,1,3,3,3,3,30,MO,MI,CA
-Onyx Squadron Pilot,TIE Defender,3,3,3,3,3,32,MO,MI,CA
-Colonel Vessery,TIE Defender,6,3,3,3,3,35,MO,E,MI,CA
-Rexler Brath,TIE Defender,8,3,3,3,3,37,MO,E,MI,CA
-Sigma Squadron Pilot,TIE Phantom,3,4,2,2,2,25,MO,CR,S
-Shadow Squadron Pilot,TIE Phantom,5,4,2,2,2,27,MO,CR,S
-Echo,TIE Phantom,5,4,2,2,2,30,MO,E,CR,S
-Whisper,TIE Phantom,7,4,2,2,2,32,MO,E,CR,S
-Omicron Group Pilot,Lambda Shuttle,2,3,1,5,5,21,MO,S,CA,CR,CR,TI
-Captain Yorr,Lambda Shuttle,4,3,1,5,5,24,MO,S,CA,CR,CR,TI
-Colonel Jendon,Lambda Shuttle,6,3,1,5,5,26,MO,S,CA,CR,CR,TI
-Captain Kagi,Lambda Shuttle,8,3,1,5,5,27,MO,S,CA,CR,CR,TI
-Patrol Leader,VT-49,3,3,0,12,4,40,MO,B,CR,CR,CR,TO,TI
-Captain Oicunn,VT-49,4,3,0,12,4,42,MO,E,B,CR,CR,CR,TO,TI
-Commander Kenkirk,VT-49,6,3,0,12,4,44,MO,E,B,CR,CR,CR,TO,TI
-Rear Admiral Chiraneau,VT-49,8,3,0,12,4,46,MO,E,B,CR,CR,CR,TO,TI
-Bounty Hunter,Firespray-31,3,3,2,6,4,33,MO,MI,CA,B,CR,TI
-Krassis Trelix,Firespray-31,5,3,2,6,4,36,MO,MI,CA,B,CR,TI
-Kath Scarlet,Firespray-31,7,3,2,6,4,38,MO,E,MI,CA,B,CR,TI
-Boba Fett,Firespray-31,8,3,2,6,4,39,MO,E,MI,CA,B,CR,TI
-Rookie Pilot,X-Wing,2,3,2,3,2,21,MO,A,TO
-Red Squadron Pilot,X-Wing,4,3,2,3,2,23,MO,A,TO
-Tarn Mison,X-Wing,3,3,2,3,2,23,MO,A,TO
-Biggs Darklighter,X-Wing,5,3,2,3,2,25,MO,A,TO
-Hobbie Klivian,X-Wing,5,3,2,3,2,25,MO,A,TO
-Garven Dreis,X-Wing,6,3,2,3,2,26,MO,A,TO
-Jek Porkins,X-Wing,7,3,2,3,2,26,MO,E,A,TO
-Luke Skywalker,X-Wing,8,3,2,3,2,28,MO,E,A,TO
-Wedge Antilles,X-Wing,9,3,2,3,2,29,MO,E,A,TO
-Wes Janson,X-Wing,9,3,2,3,2,29,MO,E,A,TO
-Gold Squadron Pilot,Y-Wing,2,2,1,5,3,18,MO,A,TO,TO,TU
-Gray Squadron Pilot,Y-Wing,4,2,1,5,3,20,MO,A,TO,TO,TU
-Dutch Vander,Y-Wing,6,2,1,5,3,23,MO,A,TO,TO,TU
-Horton Salm,Y-Wing,8,2,1,5,3,25,MO,A,TO,TO,TU
-Prototype Pilot,A-Wing,1,2,3,2,2,17,MO,MI
-Green Squadron Pilot,A-Wing,3,2,3,2,2,19,MO,E,TI,MI
-Gemmer Sojan,A-Wing,5,2,3,2,2,22,MO,TI,MI
-Arvel Crynyd,A-Wing,6,2,3,2,2,23,MO,TI,MI
-Jake Farrell,A-Wing,7,2,3,2,2,24,MO,E,TI,MI
-Tycho Celchu,A-Wing,8,2,3,2,2,26,MO,E,TI,MI
-Blue Squadron Pilot,B-Wing,2,3,1,3,5,22,MO,S,CA,TO,TO
-Dagger Squadron Pilot,B-Wing,4,3,1,3,5,24,MO,S,CA,TO,TO
-Nera Dantels,B-Wing,5,3,1,3,5,26,MO,E,S,CA,TO,TO
-Ibtisam,B-Wing,6,3,1,3,5,28,MO,E,S,CA,TO,TO
-Keyan Farlander,B-Wing,7,3,1,3,5,29,MO,E,S,CA,TO,TO
-Ten Numb,B-Wing,8,3,1,3,5,31,MO,E,S,CA,TO,TO
-Knave Squadron Pilot,E-Wing,1,3,3,2,3,27,MO,A,TO,S
-Blackmoon Squadron Pilot,E-Wing,3,3,3,2,3,29,MO,A,TO,S
-Etahn A'baht,E-Wing,5,3,3,2,3,32,MO,E,A,TO,S
-Corran Horn,E-Wing,8,3,3,2,3,35,MO,E,A,TO,S
-Bandit Squadron Pilot,Z-95,2,2,2,2,2,12,MO,MI
-Tala Squadron Pilot,Z-95,4,2,2,2,2,13,MO,MI
-Lieutenant Blount,Z-95,6,2,2,2,2,17,MO,E,MI
-Airen Cracken,Z-95,8,2,2,2,2,19,MO,E,MI
-Rebel Operative,HWK-290,2,1,2,4,1,16,MO,TU,CR,TI
-Roark Garnet,HWK-290,4,1,2,4,1,19,MO,TU,CR,TI
-Kyle Katarn,HWK-290,6,1,2,4,1,21,MO,E,TU,CR,TI
-Jan Ors,HWK-290,8,1,2,4,1,25,MO,E,TU,CR,TI
-Outer Rim Smuggler,YT-1300,1,2,1,6,4,27,MO,CR,CR,TI
-Chewbacca,YT-1300,5,3,1,8,5,42,MO,E,CR,CR,TI,MI
-Lando Calrissian,YT-1300,7,3,1,8,5,44,MO,E,CR,CR,TI,MI
-Han Solo,YT-1300,9,3,1,8,5,46,MO,E,CR,CR,TI,MI
-Eaden Vrill,YT-2400,3,2,2,5,5,32,MO,CA,MI,CR,TI
-Leebo,YT-2400,5,2,2,5,5,34,MO,E,CA,MI,CR,TI
-Dash Rendar,YT-2400,7,2,2,5,5,36,MO,E,CA,MI,CR,TI
+Academy Pilot,TIE Fighter,1,2,3,3,0,12,false,MO
+Obsidian Squadron Pilot,TIE Fighter,3,2,3,3,0,13,false,MO
+Black Squadron Pilot,TIE Fighter,4,2,3,3,0,14,false,MO,E
+Night Beast,TIE Fighter,5,2,3,3,0,15,true,MO
+Winged Gundark,TIE Fighter,5,2,3,3,0,15,true,MO
+Backstabber,TIE Fighter,6,2,3,3,0,16,true,MO
+Dark Curse,TIE Fighter,6,2,3,3,0,16,true,MO
+Mauler Mithel,TIE Fighter,7,2,3,3,0,17,true,MO,E
+Howlrunner,TIE Fighter,8,2,3,3,0,18,true,MO,E
+Tempest Squadron Pilot,TIE Advanced,2,2,3,3,2,21,false,MO,MI
+Storm Squadron Pilot,TIE Advanced,4,2,3,3,2,23,false,MO,MI
+Maarek Stele,TIE Advanced,7,2,3,3,2,27,true,MO,E,MI
+Darth Vader,TIE Advanced,9,2,3,3,2,29,true,MO,E,MI
+Alpha Squadron Pilot,TIE Interceptor,1,3,3,3,0,18,false,MO
+Avenger Squadron Pilot,TIE Interceptor,3,3,3,3,0,20,false,MO
+Saber Squadron Pilot,TIE Interceptor,4,3,3,3,0,21,false,MO,E
+Royal Guard Pilot,TIE Interceptor,6,3,3,3,0,22,false,MO,E,TI
+Fel's Wrath,TIE Interceptor,4,3,3,3,0,23,true,MO,TI
+Lieutenant Lorrir,TIE Interceptor,5,3,3,3,0,23,true,MO,TI
+Kir Kanos,TIE Interceptor,6,3,3,3,0,24,true,MO,TI
+Tetran Cowall,TIE Interceptor,7,3,3,3,0,24,true,MO,E,TI
+Turr Phennir,TIE Interceptor,7,3,3,3,0,25,true,MO,E,TI
+Carnor Jax,TIE Interceptor,8,3,3,3,0,26,true,MO,E,TI
+Soontir Fel,TIE Interceptor,9,3,3,3,0,27,true,MO,E,TI
+Scimitar Squadron Pilot,TIE Bomber,2,2,2,6,0,16,false,MO,TO,TO,MI,MI,B
+Gamma Squadron Pilot,TIE Bomber,4,2,2,6,0,18,false,MO,TO,TO,MI,MI,B
+Captain Jonus,TIE Bomber,6,2,2,6,0,22,true,MO,E,TO,TO,MI,MI,B
+Major Rhymer,TIE Bomber,7,2,2,6,0,26,true,MO,E,TO,TO,MI,MI,B
+Delta Squadron Pilot,TIE Defender,1,3,3,3,3,30,false,MO,MI,CA
+Onyx Squadron Pilot,TIE Defender,3,3,3,3,3,32,false,MO,MI,CA
+Colonel Vessery,TIE Defender,6,3,3,3,3,35,true,MO,E,MI,CA
+Rexler Brath,TIE Defender,8,3,3,3,3,37,true,MO,E,MI,CA
+Sigma Squadron Pilot,TIE Phantom,3,4,2,2,2,25,false,MO,CR,S
+Shadow Squadron Pilot,TIE Phantom,5,4,2,2,2,27,false,MO,CR,S
+Echo,TIE Phantom,5,4,2,2,2,30,true,MO,E,CR,S
+Whisper,TIE Phantom,7,4,2,2,2,32,true,MO,E,CR,S
+Omicron Group Pilot,Lambda Shuttle,2,3,1,5,5,21,false,MO,S,CA,CR,CR,TI
+Captain Yorr,Lambda Shuttle,4,3,1,5,5,24,true,MO,S,CA,CR,CR,TI
+Colonel Jendon,Lambda Shuttle,6,3,1,5,5,26,true,MO,S,CA,CR,CR,TI
+Captain Kagi,Lambda Shuttle,8,3,1,5,5,27,true,MO,S,CA,CR,CR,TI
+Patrol Leader,VT-49,3,3,0,12,4,40,false,MO,B,CR,CR,CR,TO,TI
+Captain Oicunn,VT-49,4,3,0,12,4,42,true,MO,E,B,CR,CR,CR,TO,TI
+Commander Kenkirk,VT-49,6,3,0,12,4,44,true,MO,E,B,CR,CR,CR,TO,TI
+Rear Admiral Chiraneau,VT-49,8,3,0,12,4,46,true,MO,E,B,CR,CR,CR,TO,TI
+Bounty Hunter,Firespray-31,3,3,2,6,4,33,false,MO,MI,CA,B,CR,TI
+Krassis Trelix,Firespray-31,5,3,2,6,4,36,true,MO,MI,CA,B,CR,TI
+Kath Scarlet,Firespray-31,7,3,2,6,4,38,true,MO,E,MI,CA,B,CR,TI
+Boba Fett,Firespray-31,8,3,2,6,4,39,true,MO,E,MI,CA,B,CR,TI
+Rookie Pilot,X-Wing,2,3,2,3,2,21,false,MO,A,TO
+Red Squadron Pilot,X-Wing,4,3,2,3,2,23,false,MO,A,TO
+Tarn Mison,X-Wing,3,3,2,3,2,23,true,MO,A,TO
+Biggs Darklighter,X-Wing,5,3,2,3,2,25,true,MO,A,TO
+Hobbie Klivian,X-Wing,5,3,2,3,2,25,true,MO,A,TO
+Garven Dreis,X-Wing,6,3,2,3,2,26,true,MO,A,TO
+Jek Porkins,X-Wing,7,3,2,3,2,26,true,MO,E,A,TO
+Luke Skywalker,X-Wing,8,3,2,3,2,28,true,MO,E,A,TO
+Wedge Antilles,X-Wing,9,3,2,3,2,29,true,MO,E,A,TO
+Wes Janson,X-Wing,9,3,2,3,2,29,true,MO,E,A,TO
+Gold Squadron Pilot,Y-Wing,2,2,1,5,3,18,false,MO,A,TO,TO,TU
+Gray Squadron Pilot,Y-Wing,4,2,1,5,3,20,false,MO,A,TO,TO,TU
+Dutch Vander,Y-Wing,6,2,1,5,3,23,true,MO,A,TO,TO,TU
+Horton Salm,Y-Wing,8,2,1,5,3,25,true,MO,A,TO,TO,TU
+Prototype Pilot,A-Wing,1,2,3,2,2,17,false,MO,MI
+Green Squadron Pilot,A-Wing,3,2,3,2,2,19,false,MO,E,TI,MI
+Gemmer Sojan,A-Wing,5,2,3,2,2,22,true,MO,TI,MI
+Arvel Crynyd,A-Wing,6,2,3,2,2,23,true,MO,TI,MI
+Jake Farrell,A-Wing,7,2,3,2,2,24,true,MO,E,TI,MI
+Tycho Celchu,A-Wing,8,2,3,2,2,26,true,MO,E,TI,MI
+Blue Squadron Pilot,B-Wing,2,3,1,3,5,22,false,MO,S,CA,TO,TO
+Dagger Squadron Pilot,B-Wing,4,3,1,3,5,24,false,MO,S,CA,TO,TO
+Nera Dantels,B-Wing,5,3,1,3,5,26,true,MO,E,S,CA,TO,TO
+Ibtisam,B-Wing,6,3,1,3,5,28,true,MO,E,S,CA,TO,TO
+Keyan Farlander,B-Wing,7,3,1,3,5,29,true,MO,E,S,CA,TO,TO
+Ten Numb,B-Wing,8,3,1,3,5,31,true,MO,E,S,CA,TO,TO
+Knave Squadron Pilot,E-Wing,1,3,3,2,3,27,false,MO,A,TO,S
+Blackmoon Squadron Pilot,E-Wing,3,3,3,2,3,29,false,MO,A,TO,S
+Etahn A'baht,E-Wing,5,3,3,2,3,32,true,MO,E,A,TO,S
+Corran Horn,E-Wing,8,3,3,2,3,35,true,MO,E,A,TO,S
+Bandit Squadron Pilot,Z-95,2,2,2,2,2,12,false,MO,MI
+Tala Squadron Pilot,Z-95,4,2,2,2,2,13,false,MO,MI
+Lieutenant Blount,Z-95,6,2,2,2,2,17,true,MO,E,MI
+Airen Cracken,Z-95,8,2,2,2,2,19,true,MO,E,MI
+Rebel Operative,HWK-290,2,1,2,4,1,16,false,MO,TU,CR,TI
+Roark Garnet,HWK-290,4,1,2,4,1,19,true,MO,TU,CR,TI
+Kyle Katarn,HWK-290,6,1,2,4,1,21,true,MO,E,TU,CR,TI
+Jan Ors,HWK-290,8,1,2,4,1,25,true,MO,E,TU,CR,TI
+Outer Rim Smuggler,YT-1300,1,2,1,6,4,27,false,MO,CR,CR,TI
+Chewbacca,YT-1300,5,3,1,8,5,42,true,MO,E,CR,CR,TI,MI
+Lando Calrissian,YT-1300,7,3,1,8,5,44,true,MO,E,CR,CR,TI,MI
+Han Solo,YT-1300,9,3,1,8,5,46,true,MO,E,CR,CR,TI,MI
+Eaden Vrill,YT-2400,3,2,2,5,5,32,true,MO,CA,MI,CR,TI
+Leebo,YT-2400,5,2,2,5,5,34,true,MO,E,CA,MI,CR,TI
+Dash Rendar,YT-2400,7,2,2,5,5,36,true,MO,E,CA,MI,CR,TI
 
 
 

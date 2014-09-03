@@ -17,4 +17,5 @@ public class Pilot {
     int shieldPoints
     int hullPoints
     int pointCost
+    boolean isUnique
 }

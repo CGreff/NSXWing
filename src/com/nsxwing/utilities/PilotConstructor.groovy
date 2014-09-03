@@ -40,7 +40,7 @@ class PilotConstructor {
             Ship ship = ShipConstructor.getShip(pilotInfo[1])
             Set<EquipmentSlot> equipmentSlots = []
 
-            for (int i = 8; i < pilotInfo.length; i++) {
+            for (int i = 9; i < pilotInfo.length; i++) {
                 equipmentSlots.add(new EquipmentSlot(type: EQUIPMENT_TYPE_MAP.get(pilotInfo[i])))
             }
 
@@ -54,6 +54,7 @@ class PilotConstructor {
                     hullPoints: Integer.parseInt(pilotInfo[5]),
                     shieldPoints: Integer.parseInt(pilotInfo[6]),
                     pointCost: Integer.parseInt(pilotInfo[7]),
+                    isUnique: Boolean.parseBoolean(pilotInfo[8]),
                     equipments: equipmentSlots
             ))
             pilotInfoLine = reader.readLine()
