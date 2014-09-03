@@ -8,6 +8,8 @@ import com.nsxwing.components.abilities.Ability
  */
 public class Pilot {
     Ability ability
+    int attack
+    int agility
     int shieldPoints
     int hullPoints
     int pointCost

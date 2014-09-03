@@ -31,21 +31,22 @@ class ShipConstructor {
 
     static {
         Map<String, Ship> map = [:]
+
+        //The CSV should have each line as a new ship with the format going: ShipName,Attack,Agility,Maneuver,Maneuver,Maneuver...
+        //Maneuvers should match '[1-5][FKBT][WGR]'; Where 1 through 5 is the distance of the maneuver - see the maps above.
         BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemClassLoader().getResourceAsStream('ShipManeuvers.csv')))
         String shipInfoLine = reader.readLine()
 
         while(shipInfoLine) {
             String[] shipInfo = shipInfoLine.split(',')
             String mapKey = shipInfo[0]
-            int attack = Integer.parseInt(shipInfo[1])
-            int agility = Integer.parseInt(shipInfo[2])
             Set<Maneuver> maneuvers = []
-            for (int i = 3; i < shipInfo.length; i++) {
+            for (int i = 1; i < shipInfo.length; i++) {
                 maneuvers.add((Maneuver) MANEUVER_KEY_MAP.get(shipInfo[i].charAt(1) as String)
                         .newInstance(Integer.parseInt(shipInfo[i].charAt(0) as String),
                         MANEUVER_DIFFICULTY_MAP.get(shipInfo[i].charAt(2) as String)))
             }
-            map.put(mapKey, new Ship(attack: attack, agility: agility, maneuvers: maneuvers))
+            map.put(mapKey, new Ship(maneuvers: maneuvers))
             shipInfoLine = reader.readLine()
         }
 
