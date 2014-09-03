@@ -9,4 +9,5 @@ import com.nsxwing.movement.Maneuver
 public class Ship {
     Set<Maneuver> maneuvers
     Set<Action> actions
+    boolean isHuge
 }
