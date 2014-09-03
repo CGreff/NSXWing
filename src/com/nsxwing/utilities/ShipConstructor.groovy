@@ -1,5 +1,6 @@
 package com.nsxwing.utilities
 
+import com.nsxwing.components.Ship
 import com.nsxwing.movement.BankTurn
 import com.nsxwing.movement.Forward
 import com.nsxwing.movement.HardTurn
@@ -13,9 +14,9 @@ import static com.nsxwing.movement.ManeuverDifficulty.RED
 /**
  * Utility class to take a ship name and provide the Set<Maneuver> for it.
  */
-class ShipToManeuverSetMap {
+class ShipConstructor {
 
-    private static final Map<String, Set<Maneuver>> SHIP_TO_MANEUVER_MAP
+    private static final Map<String, Ship> NAME_TO_SHIP_MAP
     private static final Map<String, Class> MANEUVER_KEY_MAP = [
             'F' : Forward,
             'K' : Koiogran,
@@ -29,28 +30,29 @@ class ShipToManeuverSetMap {
     ].asImmutable()
 
     static {
-        Map<String, Set<Maneuver>> map = [:]
+        Map<String, Ship> map = [:]
         BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemClassLoader().getResourceAsStream('ShipManeuvers.csv')))
-        String shipManeuverLine = reader.readLine()
+        String shipInfoLine = reader.readLine()
 
-        while(shipManeuverLine) {
-            String[] maneuverInfo = shipManeuverLine.split(',')
-            String mapKey = maneuverInfo[0]
+        while(shipInfoLine) {
+            String[] shipInfo = shipInfoLine.split(',')
+            String mapKey = shipInfo[0]
+            int attack = Integer.parseInt(shipInfo[1])
+            int agility = Integer.parseInt(shipInfo[2])
             Set<Maneuver> maneuvers = []
-            for (int i = 1; i < maneuverInfo.length; i++) {
-                maneuvers.add((Maneuver) MANEUVER_KEY_MAP.get(maneuverInfo[i].charAt(1) as String)
-                        .newInstance(Integer.parseInt(maneuverInfo[i].charAt(0) as String),
-                        MANEUVER_DIFFICULTY_MAP.get(maneuverInfo[i].charAt(2) as String)))
+            for (int i = 3; i < shipInfo.length; i++) {
+                maneuvers.add((Maneuver) MANEUVER_KEY_MAP.get(shipInfo[i].charAt(1) as String)
+                        .newInstance(Integer.parseInt(shipInfo[i].charAt(0) as String),
+                        MANEUVER_DIFFICULTY_MAP.get(shipInfo[i].charAt(2) as String)))
             }
-            map.put(mapKey, maneuvers)
-            shipManeuverLine = reader.readLine()
+            map.put(mapKey, new Ship(attack: attack, agility: agility, maneuvers: maneuvers))
+            shipInfoLine = reader.readLine()
         }
 
-        SHIP_TO_MANEUVER_MAP = map.asImmutable()
+        NAME_TO_SHIP_MAP = map.asImmutable()
     }
 
-
-    static Set<Maneuver> getManeuvers(String shipName) {
-        SHIP_TO_MANEUVER_MAP.get(shipName)
+    static Ship getShip(String shipName) {
+        NAME_TO_SHIP_MAP.get(shipName)
     }
 }

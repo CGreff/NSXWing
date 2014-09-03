@@ -8,5 +8,5 @@ import com.nsxwing.movement.Maneuver
 public class Ship {
     int attack
     int agility
-    Set<Maneuver> moveSet
+    Set<Maneuver> maneuvers
 }
