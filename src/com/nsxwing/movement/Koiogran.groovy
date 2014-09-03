@@ -16,7 +16,7 @@ public class Koiogran implements Maneuver {
     }
 
     @Override
-    public void move(Position position) {
+    public void move(Position position, Direction direction) {
 
     }
 }

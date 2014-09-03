@@ -1,7 +1,15 @@
 package com.nsxwing.components.actions
 
+import com.nsxwing.agents.PlayerAgent
+
 /**
- * Interface governing the contract that actions should follow.
+ *
  */
-public interface Action {
+abstract class Action {
+
+    boolean hasExecuted
+
+    void execute(PlayerAgent target) {
+        hasExecuted = true
+    }
 }
