@@ -1,4 +1,4 @@
-package com.nsxwing.components.meta
+package com.nsxwing.components
 
 /**
  * Enum describing the available Factions in the game.

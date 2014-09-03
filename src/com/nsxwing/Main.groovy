@@ -1,10 +1,11 @@
 package com.nsxwing
 
-import com.nsxwing.utilities.ShipConstructor
+import com.nsxwing.utilities.PilotConstructor
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(ShipConstructor.getShip('X-Wing'))
+        //Testing Grounds because I'm a bad person.
+        System.out.println(PilotConstructor.getPilot('Academy Pilot'))
     }
 }

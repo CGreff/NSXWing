@@ -12,7 +12,7 @@ import static com.nsxwing.movement.ManeuverDifficulty.WHITE
 import static com.nsxwing.movement.ManeuverDifficulty.RED
 
 /**
- * Utility class to take a ship name and provide the Set<Maneuver> for it.
+ * Utility class to build a list of ships from a CSV file and provide a ship name to Ship factory method.
  */
 class ShipConstructor {
 
@@ -32,7 +32,7 @@ class ShipConstructor {
     static {
         Map<String, Ship> map = [:]
 
-        //The CSV should have each line as a new ship with the format going: ShipName,Attack,Agility,Maneuver,Maneuver,Maneuver...
+        //The CSV should have each line as a new ship with the format going: ShipName,Maneuver,Maneuver,Maneuver...
         //Maneuvers should match '[1-5][FKBT][WGR]'; Where 1 through 5 is the distance of the maneuver - see the maps above.
         BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemClassLoader().getResourceAsStream('ShipManeuvers.csv')))
         String shipInfoLine = reader.readLine()
