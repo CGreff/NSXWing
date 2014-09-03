@@ -3,14 +3,16 @@ package com.nsxwing.movement
 import com.nsxwing.gamestate.Position
 
 /**
- * Implementation of Movement that does a 45 degree Bank turn, distance 1-3.
+ * Implementation of Maneuver that does a 45 degree Bank turn, distance 1-3.
  */
-public class BankTurn implements Movement {
+public class BankTurn implements Maneuver {
 
     private final int distance
+    private final ManeuverDifficulty difficulty
 
-    BankTurn(int distance) {
+    BankTurn(int distance, ManeuverDifficulty difficulty) {
         this.distance = distance
+        this.difficulty = difficulty
     }
 
     @Override

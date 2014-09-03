@@ -5,6 +5,6 @@ import com.nsxwing.gamestate.Position
 /**
  * Interface implemented by the different types of movements.
  */
-public interface Movement {
+public interface Maneuver {
     public void move(Position position)
 }
