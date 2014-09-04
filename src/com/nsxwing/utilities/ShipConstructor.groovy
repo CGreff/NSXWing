@@ -56,7 +56,7 @@ class ShipConstructor {
             String[] shipInfo = shipInfoLine.split(',')
             String mapKey = shipInfo[0]
             boolean isHuge = Boolean.parseBoolean(shipInfo[1])
-
+            //Keep track of the array pointer.
             int i = 2
             //Build the Action Set.
             Set<Action> actions = []

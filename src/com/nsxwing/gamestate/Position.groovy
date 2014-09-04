@@ -9,5 +9,5 @@ public class Position {
     Coordinate upperLeft
     Coordinate upperRight
     //in Radians, measured CCW from X axis
-    private double heading
+    double heading
 }
