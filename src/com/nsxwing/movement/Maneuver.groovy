@@ -15,8 +15,8 @@ abstract class Maneuver {
     Position translateCoordinates(Position originalPosition, Position localPosition) {
         Position newPosition = new Position()
         for (String field : COORDINATE_IDENTIFIERS) {
-            double x = localPosition."$field".x * Math.cos(originalPosition.heading) + localPosition."$field".y * Math.sin(originalPosition.heading)
-            double y = -(localPosition."$field".x) * Math.sin(originalPosition.heading) + localPosition."$field".y * Math.cos(originalPosition.heading)
+            double x = (localPosition."$field".x - originalPosition.lowerLeft.x) * Math.cos(originalPosition.heading) + (localPosition."$field".y + originalPosition.lowerLeft.y) * Math.sin(originalPosition.heading)
+            double y = -(localPosition."$field".x - originalPosition.lowerLeft.x) * Math.sin(originalPosition.heading) + (localPosition."$field".y + originalPosition.lowerLeft.y) * Math.cos(originalPosition.heading)
             newPosition."$field" = new Coordinate(x: x, y: y)
         }
 

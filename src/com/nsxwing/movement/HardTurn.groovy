@@ -36,7 +36,7 @@ public class HardTurn extends Maneuver {
                     lowerRight: new Coordinate(x: -11 + xModifier, y: 30 + yModifier),
                     upperLeft: new Coordinate(x: 69 + xModifier, y: 30 + yModifier),
                     upperRight: new Coordinate(x: 29 + xModifier, y: -10 + yModifier),
-                    heading: heading
+                    heading: -(heading)
             )
         }
 

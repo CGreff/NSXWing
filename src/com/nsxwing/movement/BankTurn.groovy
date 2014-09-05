@@ -24,19 +24,19 @@ public class BankTurn extends Maneuver {
         double yModifier = distance * 34
         if (direction == Direction.LEFT) {
             localPosition = new Position(
-                    lowerLeft: new Coordinate(x: -4 - xModifier, y: 50 + yModifier),
-                    lowerRight: new Coordinate(x: -14.284 - xModifier, y: 78.284 + yModifier),
-                    upperLeft: new Coordinate(x: -32.284 - xModifier, y: 38.284 + yModifier),
-                    upperRight: new Coordinate(x: -44 - xModifier, y: 66.569 + yModifier),
+                    lowerRight: new Coordinate(x: -4 - xModifier, y: 50 + yModifier),
+                    upperRight: new Coordinate(x: -14.284 - xModifier, y: 78.284 + yModifier),
+                    lowerLeft: new Coordinate(x: -32.284 - xModifier, y: 38.284 + yModifier),
+                    upperLeft: new Coordinate(x: -44 - xModifier, y: 66.569 + yModifier),
                     heading: heading
             )
         } else {
             localPosition = new Position(
-                    lowerLeft: new Coordinate(x: 14.284 + xModifier, y: 78.284 + yModifier),
-                    lowerRight: new Coordinate(x: 4 + xModifier, y: 50 + yModifier),
-                    upperLeft: new Coordinate(x: 44 + xModifier, y: 66.569 + yModifier),
-                    upperRight: new Coordinate(x: 32.284 + xModifier, y: 38.284 + yModifier),
-                    heading: heading
+                    upperLeft: new Coordinate(x: 14.284 + xModifier, y: 78.284 + yModifier),
+                    lowerLeft: new Coordinate(x: 4 + xModifier, y: 50 + yModifier),
+                    upperRight: new Coordinate(x: 44 + xModifier, y: 66.569 + yModifier),
+                    lowerRight: new Coordinate(x: 32.284 + xModifier, y: 38.284 + yModifier),
+                    heading: -(heading)
             )
         }
 
