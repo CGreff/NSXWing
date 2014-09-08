@@ -9,8 +9,9 @@ Moving: Select the template and modify the points as seen below; convert LCS to 
     x=Xcosθ+Ysinθ
     y=−Xsinθ+Ycosθ
 Then recalculate LCS theta with GCS for the moved ship and reset P0 to 0,0; P1 to 40,0 etc:
-Add new theta to last theta module 2 pi.
+Add new theta to last theta modulo 2 pi.
 
+y = 40x + 40
 1F
     p[0,1,2,3] y + 80
 2F
@@ -22,6 +23,7 @@ Add new theta to last theta module 2 pi.
 5F
     p[0,1,2,3] y + 200
 
+y = 40x + 40
 2K
     p[0,1] y + 160
     p[2,3] y + 80
@@ -67,32 +69,43 @@ Add new theta to last theta module 2 pi.
     p2 x + 89; y + 167.568
     p3 x + 77.284; y + 139.284
 
+
+(y-20)^2 + (x+36)^2 = 3136
 1HL
     p0 x - 17; y + 56
     p1 x - 57; y + 96
     p2 x - 57; y + 16
     p3 x - 97; y + 56
+
+(y-20)^2 + (x+64)^2 = 7056
 2HL
     p0 x - 44; y + 81
     p1 x - 84; y + 121
     p2 x - 84; y + 41
     p3 x - 124; y + 81
+
+(y-20)^2 + (x+92)^2 = 12544
 3HL
     p0 x - 72; y + 107
     p1 x - 112; y + 147
     p2 x - 112; y + 67
     p3 x - 152; y + 107
 
+(y-20)^2 + (x-76)^2 = 3136   <--(56^2) (Use https://www.desmos.com/calculator)
 1HR
     p0 x + 57; y + 96
     p1 x + 17; y + 56
     p2 x + 97; y + 56
     p3 x + 57; y + 16
+
+(y-20)^2 + (x-104)^2 = 7056
 2HR
     p0 x + 84; y + 121
     p1 x + 44; y + 81
     p2 x + 124; y + 81
     p3 x + 84; y + 41
+
+(y-20)^2 + (x-132)^2 = 12544
 3HR
     p0 x + 112; y + 147
     p1 x + 72; y + 107
