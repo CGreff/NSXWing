@@ -10,4 +10,9 @@ public class Position {
     Coordinate upperRight
     //in Radians, measured CCW from X axis
     double heading
+
+    public Coordinate getCenter() {
+        new Coordinate(x: (lowerLeft.x + lowerRight.x + upperLeft.x + upperRight.x)/4,
+                       y: (lowerLeft.y + lowerRight.y + upperLeft.y + upperRight.y)/4)
+    }
 }
