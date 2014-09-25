@@ -8,25 +8,21 @@ import com.nsxwing.gamestate.Position
  */
 public class Koiogran extends Maneuver {
 
-    private final int distance
+    private final double moveDistance
     private final ManeuverDifficulty difficulty
 
     Koiogran(int distance, ManeuverDifficulty difficulty) {
-        this.distance = distance
+        this.moveDistance = distance * 40 + 40
         this.difficulty = difficulty
     }
 
     @Override
     public Position move(Position position, Direction direction) {
-        final double moveDistance = distance * 40 + 40
-        Position localPosition = new Position(
-                lowerLeft: new Coordinate(x: 0, y: moveDistance + 40),
-                lowerRight: new Coordinate(x: 40, y: moveDistance + 40),
-                upperLeft: new Coordinate(x: 0, y: moveDistance - 40),
-                upperRight: new Coordinate(x: 40, y: moveDistance - 40),
-                heading: Math.PI
+        Position localPosition = rotatePosition(position, -position.heading)
+        Position newLocalPosition = new Position(
+                center: new Coordinate(x: localPosition.center.x, y: localPosition.center.y + moveDistance),
+                heading: (localPosition.heading + Math.PI) % (2 * Math.PI)
         )
-
-        translateCoordinates(position, localPosition)
+        rotatePosition(newLocalPosition, position.heading)
     }
 }

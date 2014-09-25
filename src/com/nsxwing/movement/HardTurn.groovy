@@ -8,38 +8,27 @@ import com.nsxwing.gamestate.Position
  */
 public class HardTurn extends Maneuver {
 
-    private final int distance
+    private final double radius
     private final ManeuverDifficulty difficulty
 
     HardTurn(int distance, ManeuverDifficulty difficulty) {
-        this.distance = distance
+        this.radius = 28 + (distance * 28)
         this.difficulty = difficulty
     }
 
     @Override
     public Position move(Position position, Direction direction) {
-        Position localPosition
-        double heading = Math.PI / 2
-        double xModifier = distance * 28
-        double yModifier = distance * 26
-        if (direction == Direction.LEFT) {
-            localPosition = new Position(
-                    lowerLeft: new Coordinate(x: 11 - xModifier, y: 30 + yModifier),
-                    lowerRight: new Coordinate(x: -29 - xModifier, y: 70 + yModifier),
-                    upperLeft: new Coordinate(x: -29 - xModifier, y: -10 + yModifier),
-                    upperRight: new Coordinate(x: -69 - xModifier, y: 30 + yModifier),
-                    heading: heading
-            )
-        } else {
-            localPosition = new Position(
-                    lowerLeft: new Coordinate(x: 29 + xModifier, y: 70 + yModifier),
-                    lowerRight: new Coordinate(x: -11 + xModifier, y: 30 + yModifier),
-                    upperLeft: new Coordinate(x: 69 + xModifier, y: 30 + yModifier),
-                    upperRight: new Coordinate(x: 29 + xModifier, y: -10 + yModifier),
-                    heading: -(heading)
-            )
-        }
+        Position localPosition = rotatePosition(position, -position.heading)
+        double heading = (direction == Direction.LEFT) ? -(Math.PI / 2) : Math.PI / 2
+        double xModifier = (direction == Direction.LEFT) ? localPosition.center.x - radius : localPosition.center.x + radius
+        double yModifier = localPosition.center.y
 
-        translateCoordinates(position, localPosition)
+        Position newLocalPosition = new Position(
+                center: new Coordinate(
+                        x: localPosition.center.x + (radius * Math.cos(heading) + xModifier),
+                        y: localPosition.center.y + (radius * Math.sin(heading) + yModifier),
+                ),
+                heading: (localPosition.heading + heading) % (2 * Math.PI))
+        rotatePosition(newLocalPosition, position.heading)
     }
 }
