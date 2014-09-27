@@ -19,14 +19,14 @@ public class BankTurn extends Maneuver {
     @Override
     public Position move(Position position, Direction direction) {
         Position localPosition = rotatePosition(position, -position.heading)
-        double heading = (direction == Direction.LEFT) ? -(Math.PI / 4) : Math.PI / 4
+        double heading = (direction == Direction.LEFT) ? -(5 * Math.PI / 4) : Math.PI / 4
         double xModifier = (direction == Direction.LEFT) ? localPosition.center.x - radius : localPosition.center.x + radius
         double yModifier = localPosition.center.y
 
         Position newLocalPosition = new Position(
                 center: new Coordinate(
-                        x: localPosition.center.x + (radius * Math.cos(heading) + xModifier),
-                        y: localPosition.center.y + (radius * Math.sin(heading) + yModifier),
+                        x: (radius * Math.cos(heading) + xModifier),
+                        y: (radius * Math.sin(heading) + yModifier),
                 ),
                 heading: (localPosition.heading + heading) % (2 * Math.PI))
         rotatePosition(newLocalPosition, position.heading)
