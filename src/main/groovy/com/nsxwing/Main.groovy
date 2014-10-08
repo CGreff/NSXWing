@@ -2,6 +2,7 @@ package com.nsxwing
 
 import com.nsxwing.gamestate.Coordinate
 import com.nsxwing.gamestate.Position
+import com.nsxwing.movement.BankTurn
 import com.nsxwing.movement.Direction
 import com.nsxwing.movement.HardTurn
 import com.nsxwing.movement.Maneuver
@@ -14,11 +15,11 @@ public class Main {
         //Testing Grounds because I'm a bad person.
         System.out.println(PilotConstructor.getPilot('Academy Pilot'))
         Position startPos = new Position(
-                center: new Coordinate(x: 56, y: 0),
+                center: new Coordinate(x: 0, y: 0),
                 heading: 0
         )
-        Maneuver maneuver = new HardTurn(1, ManeuverDifficulty.WHITE)
-        Position position = maneuver.move(startPos, Direction.LEFT)
+        Maneuver maneuver = new BankTurn(1, ManeuverDifficulty.WHITE)
+        Position position = maneuver.move(startPos, Direction.RIGHT)
         System.out.println("center: ${position.center.x}, ${position.center.y}; heading: ${position.heading}")
     }
 }
