@@ -66,4 +66,8 @@ class PilotConstructor {
     static Pilot getPilot(String pilotName) {
         NAME_TO_PILOT_MAP.get(pilotName)
     }
+
+    static List<Pilot> getPilots() {
+        NAME_TO_PILOT_MAP.values() as List
+    }
 }
