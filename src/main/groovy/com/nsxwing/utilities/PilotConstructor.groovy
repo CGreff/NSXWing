@@ -1,8 +1,7 @@
 package com.nsxwing.utilities
 
-import com.nsxwing.components.Pilot
+import com.nsxwing.components.pilots.Pilot
 import com.nsxwing.components.Ship
-import com.nsxwing.components.abilities.VoidAbility
 import com.nsxwing.components.equipment.EquipmentSlot
 import com.nsxwing.components.equipment.EquipmentType
 import static com.nsxwing.components.equipment.EquipmentType.*
@@ -44,9 +43,7 @@ class PilotConstructor {
                 equipmentSlots.add(new EquipmentSlot(type: EQUIPMENT_TYPE_MAP.get(pilotInfo[i])))
             }
 
-            map.put(mapKey, new Pilot(
-                    //TODO: Make abilities.
-                    ability: new VoidAbility(),
+            map.put(mapKey, Class.forName("com.nsxwing.components.pilots.${mapKey.replaceAll(' ', '')}").newInstance(
                     ship: ship,
                     pilotSkill: Integer.parseInt(pilotInfo[2]),
                     attack: Integer.parseInt(pilotInfo[3]),
@@ -56,7 +53,7 @@ class PilotConstructor {
                     pointCost: Integer.parseInt(pilotInfo[7]),
                     isUnique: Boolean.parseBoolean(pilotInfo[8]),
                     equipments: equipmentSlots
-            ))
+            ) as Pilot)
             pilotInfoLine = reader.readLine()
         }
 

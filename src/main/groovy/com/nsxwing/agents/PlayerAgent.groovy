@@ -1,6 +1,6 @@
 package com.nsxwing.agents;
 
-import com.nsxwing.components.Pilot
+import com.nsxwing.components.pilots.Pilot
 import com.nsxwing.gamestate.Phase
 import com.nsxwing.gamestate.Position
 
