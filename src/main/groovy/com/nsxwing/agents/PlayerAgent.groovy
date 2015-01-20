@@ -12,8 +12,4 @@ public class PlayerAgent {
     Pilot pilot
     Position position
     Phase phase
-
-    private Set<PlayerAgent> getVisibleEnemies() {
-
-    }
 }
