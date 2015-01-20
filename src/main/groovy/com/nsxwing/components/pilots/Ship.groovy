@@ -1,4 +1,4 @@
-package com.nsxwing.components
+package com.nsxwing.components.pilots
 
 import com.nsxwing.components.actions.Action
 import com.nsxwing.movement.Maneuver

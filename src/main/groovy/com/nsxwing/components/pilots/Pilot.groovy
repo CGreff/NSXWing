@@ -1,6 +1,5 @@
 package com.nsxwing.components.pilots
 
-import com.nsxwing.components.Ship
 import com.nsxwing.components.equipment.EquipmentSlot
 
 /**

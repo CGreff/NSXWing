@@ -6,12 +6,12 @@ import com.nsxwing.gamestate.Position
 /**
  * Implementation of the Hard Turn that goes 1-3 distance.
  */
-public class HardTurn extends Maneuver {
+public class Turn extends Maneuver {
 
     private final double radius
     private final ManeuverDifficulty difficulty
 
-    HardTurn(int distance, ManeuverDifficulty difficulty) {
+    Turn(int distance, ManeuverDifficulty difficulty) {
         this.radius = 28.28427124746191 + (distance * 28.28427124746191)
         this.difficulty = difficulty
     }

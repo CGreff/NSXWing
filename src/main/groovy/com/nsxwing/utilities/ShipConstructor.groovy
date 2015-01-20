@@ -1,6 +1,6 @@
 package com.nsxwing.utilities
 
-import com.nsxwing.components.Ship
+import com.nsxwing.components.pilots.Ship
 import com.nsxwing.components.actions.Action
 import com.nsxwing.components.actions.BarrelRoll
 import com.nsxwing.components.actions.Boost
@@ -10,13 +10,13 @@ import com.nsxwing.components.actions.Focus
 import com.nsxwing.components.actions.TargetLock
 import com.nsxwing.movement.BankTurn
 import com.nsxwing.movement.Forward
-import com.nsxwing.movement.HardTurn
 import com.nsxwing.movement.Koiogran
 import com.nsxwing.movement.Maneuver
 import com.nsxwing.movement.ManeuverDifficulty
 import static com.nsxwing.movement.ManeuverDifficulty.GREEN
 import static com.nsxwing.movement.ManeuverDifficulty.WHITE
 import static com.nsxwing.movement.ManeuverDifficulty.RED
+import com.nsxwing.movement.Turn
 
 /**
  * Utility class to build a list of ships from a CSV file and provide a ship name to Ship factory method.
@@ -28,7 +28,7 @@ class ShipConstructor {
             'F' : Forward,
             'K' : Koiogran,
             'B' : BankTurn,
-            'T' : HardTurn
+            'T' : Turn
     ].asImmutable()
     private static final Map<String, Class> ACTION_KEY_MAP = [
             'barrelroll' : BarrelRoll,

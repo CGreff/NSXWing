@@ -8,7 +8,7 @@ import org.junit.Test
 /**
  * Created by Christopher on 10/7/14.
  */
-class HardTurnTest {
+class TurnTest {
 
     private Position startPosition
     private Maneuver maneuver
@@ -21,7 +21,7 @@ class HardTurnTest {
                 heading: 0
         )
 
-        maneuver = new HardTurn(1, ManeuverDifficulty.WHITE)
+        maneuver = new Turn(1, ManeuverDifficulty.WHITE)
     }
 
     @Test
@@ -44,7 +44,7 @@ class HardTurnTest {
 
     @Test
     void 'should end in correct spot when turning 2 right from 0,0'() {
-        Position position = new HardTurn(2, ManeuverDifficulty.WHITE).move(startPosition, Direction.RIGHT)
+        Position position = new Turn(2, ManeuverDifficulty.WHITE).move(startPosition, Direction.RIGHT)
 
         assert position.center.x - 84.85281374238573 < EPSILON
         assert position.center.y - 123.03657992645928 < EPSILON
@@ -53,7 +53,7 @@ class HardTurnTest {
 
     @Test
     void 'should end in correct spot when turning 3 right from 0,0'() {
-        Position position = new HardTurn(3, ManeuverDifficulty.WHITE).move(startPosition, Direction.RIGHT)
+        Position position = new Turn(3, ManeuverDifficulty.WHITE).move(startPosition, Direction.RIGHT)
 
         assert position.center.x - 113.13708498984764 < EPSILON
         assert position.center.y - 161.92745289171938 < EPSILON
