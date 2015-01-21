@@ -28,8 +28,8 @@ class BankTurnTest {
     void 'should end in correct spot when turning left from 0,0'() {
         Position position = maneuver.move(startPosition, Direction.LEFT)
 
-        assert position.center.x + 34.85429303880083 < EPSILON
-        assert position.center.y - 84.14570696119915 < EPSILON
+        assert Math.abs(position.center.x + 34.85429303880083) < EPSILON
+        assert Math.abs(position.center.y - 84.14570696119915) < EPSILON
         assert position.heading == -Math.PI / 4
     }
 
@@ -37,8 +37,8 @@ class BankTurnTest {
     void 'should end in correct spot when turning right from 0,0'() {
         Position position = maneuver.move(startPosition, Direction.RIGHT)
 
-        assert position.center.x - 34.85429303880083 < EPSILON
-        assert position.center.y - 84.14570696119915 < EPSILON
+        assert Math.abs(position.center.x - 34.85429303880083) < EPSILON
+        assert Math.abs(position.center.y - 84.14570696119915) < EPSILON
         assert position.heading == Math.PI / 4
     }
 
@@ -46,8 +46,8 @@ class BankTurnTest {
     void 'should end in correct spot when turning 2 right from 0,0'() {
         Position position = new BankTurn(2, ManeuverDifficulty.WHITE).move(startPosition, Direction.RIGHT)
 
-        assert position.center.x - 50.963420073540746 < EPSILON
-        assert position.center.y - 123.03657992645928 < EPSILON
+        assert Math.abs(position.center.x - 50.963420073540746) < EPSILON
+        assert Math.abs(position.center.y - 123.03657992645928) < EPSILON
         assert position.heading == Math.PI / 4
     }
 
@@ -55,8 +55,8 @@ class BankTurnTest {
     void 'should end in correct spot when turning 3 right from 0,0'() {
         Position position = new BankTurn(3, ManeuverDifficulty.WHITE).move(startPosition, Direction.RIGHT)
 
-        assert position.center.x - 67.07254710828065 < EPSILON
-        assert position.center.y - 161.92745289171938 < EPSILON
+        assert Math.abs(position.center.x - 67.07254710828065) < EPSILON
+        assert Math.abs(position.center.y - 161.92745289171938) < EPSILON
         assert position.heading == Math.PI / 4
     }
 
@@ -68,8 +68,8 @@ class BankTurnTest {
         )
         Position position = maneuver.move(startPosition, Direction.RIGHT)
 
-        assert position.center.x - 119 < EPSILON
-        assert position.center.y - 119 < EPSILON
+        assert Math.abs(position.center.x - 119) < EPSILON
+        assert Math.abs(position.center.y - 119) < EPSILON
         assert position.heading == Math.PI / 2
     }
 
@@ -81,8 +81,8 @@ class BankTurnTest {
         )
         Position position = maneuver.move(startPosition, Direction.LEFT)
 
-        assert position.center.x - 119 < EPSILON
-        assert position.center.y - 168.2914139223983 < EPSILON
+        assert Math.abs(position.center.x - 69.70858607760168) < EPSILON
+        assert Math.abs(position.center.y - 168.2914139223983) < EPSILON
         assert position.heading == 0
     }
 }
