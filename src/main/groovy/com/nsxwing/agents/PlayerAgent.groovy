@@ -20,21 +20,20 @@ public class PlayerAgent {
      * Rear firing arcs get positions 2 and 3, maintaining the left first rule.
      * Turrets return an empty list.
      */
+    //TODO: Implement those other arcs.
     List<FiringLine> getFiringArc() {
         List<Coordinate> boxPoints = position.getBoxPoints()
 
-        [
-                new FiringLine([
-                        originX: position.center.x,
-                        originY: position.center.y,
-                        lineX: boxPoints.get(0).x,
-                        lineY: boxPoints.get(0).y]),
-                new FiringLine([
-                        originX: position.center.x,
-                        originY: position.center.y,
-                        lineX: boxPoints.get(1).x,
-                        lineY: boxPoints.get(1).y
-                ])
-        ]
+        [new FiringLine([
+                originX: position.center.x,
+                originY: position.center.y,
+                lineX: boxPoints.get(0).x,
+                lineY: boxPoints.get(0).y]),
+         new FiringLine([
+                 originX: position.center.x,
+                 originY: position.center.y,
+                 lineX: boxPoints.get(1).x,
+                 lineY: boxPoints.get(1).y
+         ])]
     }
 }

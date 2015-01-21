@@ -7,6 +7,7 @@ import com.nsxwing.components.actions.Focus
 import com.nsxwing.components.actions.TargetLock
 import com.nsxwing.components.pilots.Pilot
 import com.nsxwing.components.pilots.Ship
+import com.nsxwing.gamestate.combat.FiringArc
 import com.nsxwing.movement.BankTurn
 import com.nsxwing.movement.Forward
 import com.nsxwing.movement.Koiogran
@@ -38,7 +39,7 @@ class TieAdvanced extends Pilot {
             new TargetLock()
     ]
 
-    final Ship ship = new Ship(maneuvers: MANEUVERS, actions: ACTIONS, isHuge: false)
+    final Ship ship = new Ship(maneuvers: MANEUVERS, actions: ACTIONS, isHuge: false, primaryArc: FiringArc.NORMAL)
     final int attack = 2
     final int agility = 3
     final int shieldPoints = 2

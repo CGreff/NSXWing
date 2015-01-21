@@ -1,6 +1,7 @@
 package com.nsxwing.components.pilots
 
 import com.nsxwing.components.actions.Action
+import com.nsxwing.gamestate.combat.FiringArc
 import com.nsxwing.movement.Maneuver
 import groovy.transform.Immutable
 
@@ -11,5 +12,6 @@ import groovy.transform.Immutable
 public class Ship {
     Set<Maneuver> maneuvers
     Set<Action> actions
+    FiringArc primaryArc
     boolean isHuge
 }

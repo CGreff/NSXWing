@@ -41,6 +41,7 @@ public class Board {
     private void getRangeAndObstructions(Set<Target> enemies, PlayerAgent agent) {
         for (Target enemy: enemies) {
             Coordinate closestPoint = findClosestPoint(enemy.targetAgent.position.boxPoints, agent.position.center)
+            //TODO: Implement obstructions & shit.
             enemy.obstructed = false
             enemy.range = Math.ceil(getDistanceBetween(closestPoint, agent.position.center) / 100.0).intValue()
 
