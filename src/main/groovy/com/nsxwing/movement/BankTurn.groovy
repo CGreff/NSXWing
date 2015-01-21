@@ -1,7 +1,7 @@
 package com.nsxwing.movement
 
-import com.nsxwing.gamestate.Coordinate
-import com.nsxwing.gamestate.Position
+import com.nsxwing.gamestate.field.Coordinate
+import com.nsxwing.gamestate.field.Position
 
 /**
  * Implementation of Maneuver that does a 45 degree Bank turn, distance 1-3.

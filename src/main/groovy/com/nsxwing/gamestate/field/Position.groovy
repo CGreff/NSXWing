@@ -1,4 +1,4 @@
-package com.nsxwing.gamestate
+package com.nsxwing.gamestate.field
 
 /**
  * Marks a given ship position using the coordinates of its center.

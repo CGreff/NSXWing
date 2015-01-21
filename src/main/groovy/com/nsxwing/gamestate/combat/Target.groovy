@@ -1,4 +1,4 @@
-package com.nsxwing.gamestate
+package com.nsxwing.gamestate.combat
 
 import com.nsxwing.agents.PlayerAgent
 
@@ -6,7 +6,7 @@ import com.nsxwing.agents.PlayerAgent
  *
  */
 class Target {
-    PlayerAgent playerAgent
+    PlayerAgent targetAgent
     int range
     boolean obstructed
 }
