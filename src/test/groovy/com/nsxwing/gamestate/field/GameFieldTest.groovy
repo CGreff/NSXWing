@@ -42,7 +42,6 @@ class GameFieldTest {
         List<PlayerAgent> combinedAgents = field.getCombinedAgentList(field.ACTIVATION_COMPARATOR)
         assert combinedAgents.size() == 10
         assert combinedAgents.get(0).pilot.pilotSkill < combinedAgents.get(9).pilot.pilotSkill
-        //Check that initiative is working correctly
         assert combinedAgents.get(0).owningPlayer == PlayerIdentifier.SCRUB
     }
 

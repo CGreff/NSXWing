@@ -16,4 +16,5 @@ public abstract class Pilot {
     int hullPoints
     int pointCost
     boolean isUnique
+    boolean isStressed
 }

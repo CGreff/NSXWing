@@ -16,19 +16,13 @@ public class GameField {
     static PlayerIdentifier PLAYER_WITH_INITIATIVE
 
     static final Closure ACTIVATION_COMPARATOR = {
-        a, b -> if (a.pilot.pilotSkill <=> b.pilot.pilotSkill == 0) {
-            a.owningPlayer == PLAYER_WITH_INITIATIVE ? -1 : 1
-        } else {
-            a.pilot.pilotSkill <=> b.pilot.pilotSkill
-        }
+        double initiativeModifier = it.owningPlayer == PLAYER_WITH_INITIATIVE ? 0.1 : 0
+        it.pilot.pilotSkill - initiativeModifier
     }
 
     static final Closure COMBAT_COMPARATOR = {
-        a, b -> if (a.pilot.pilotSkill <=> b.pilot.pilotSkill == 0) {
-            a.owningPlayer == PLAYER_WITH_INITIATIVE ? -1 : 1
-        } else {
-            (a.pilot.pilotSkill <=> b.pilot.pilotSkill) * -1
-        }
+        double initiativeModifier = it.owningPlayer == PLAYER_WITH_INITIATIVE ? 0.1 : 0
+        (it.pilot.pilotSkill - initiativeModifier) * -1.0
     }
 
     final Player champ
