@@ -1,13 +1,8 @@
 package com.nsxwing
 
 import com.nsxwing.agents.Player
-import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
-import com.nsxwing.gamestate.field.Coordinate
-import com.nsxwing.gamestate.Phase
-import com.nsxwing.gamestate.field.Position
-import com.nsxwing.utilities.PilotConstructor
 
 public class Main {
 

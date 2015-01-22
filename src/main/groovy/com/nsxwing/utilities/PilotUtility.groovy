@@ -9,22 +9,8 @@ import static com.nsxwing.components.equipment.EquipmentType.*
 /**
  * Utility class that creates Pilots from a CSV file.
  */
-class PilotConstructor {
+class PilotUtility {
     private static final Map<String, Pilot> NAME_TO_PILOT_MAP
-    private static final Map<String, EquipmentType> EQUIPMENT_TYPE_MAP = [
-            'A' : ASTROMECH,
-            'B' : BOMB,
-            'CA' : CANNON,
-            'CR' : CREW,
-            'E' : ELITE_TALENT,
-            'I' : ILLICIT,
-            'MI' : MISSILE,
-            'MO' : MODIFICATION,
-            'S' : SYSTEM_UPGRADE,
-            'TI' : TITLE,
-            'TO' : TORPEDO,
-            'TU' : TURRET
-    ]
 
     static {
         Map<String, Pilot> map = [:]
