@@ -1,16 +1,17 @@
-imperials.Academy Pilot,TIE Fighter,1,2,3,3,0,12,false,MO
-imperials.Obsidian Squadron Pilot,TIE Fighter,3,2,3,3,0,13,false,MO
-imperials.Black Squadron Pilot,TIE Fighter,4,2,3,3,0,14,false,MO,E
-imperials.Night Beast,TIE Fighter,5,2,3,3,0,15,true,MO
-imperials.Winged Gundark,TIE Fighter,5,2,3,3,0,15,true,MO
-imperials.Backstabber,TIE Fighter,6,2,3,3,0,16,true,MO
-imperials.Dark Curse,TIE Fighter,6,2,3,3,0,16,true,MO
-imperials.Mauler Mithel,TIE Fighter,7,2,3,3,0,17,true,MO,E
-imperials.Howlrunner,TIE Fighter,8,2,3,3,0,18,true,MO,E
-imperials.Tempest Squadron Pilot,TIE Advanced,2,2,3,3,2,21,false,MO,MI
-imperials.Storm Squadron Pilot,TIE Advanced,4,2,3,3,2,23,false,MO,MI
-imperials.Maarek Stele,TIE Advanced,7,2,3,3,2,27,true,MO,E,MI
-imperials.Darth Vader,TIE Advanced,9,2,3,3,2,29,true,MO,E,MI
+imperials.tiefighter,Academy Pilot
+imperials.tiefighter,Obsidian Squadron Pilot
+imperials.tiefighter,Black Squadron Pilot
+imperials.tiefighter,Night Beast
+imperials.tiefighter,Winged Gundark
+imperials.tiefighter,Backstabber
+imperials.tiefighter,Dark Curse
+imperials.tiefighter,Mauler Mithel
+imperials.tiefighter,Howlrunner
+imperials.tieadvanced,Tempest Squadron Pilot
+imperials.tieadvanced,Storm Squadron Pilot
+imperials.tieadvanced,Maarek Stele
+imperials.tieadvanced,Darth Vader
+
 imperials.Alpha Squadron Pilot,TIE Interceptor,1,3,3,3,0,18,false,MO
 imperials.Avenger Squadron Pilot,TIE Interceptor,3,3,3,3,0,20,false,MO
 imperials.Saber Squadron Pilot,TIE Interceptor,4,3,3,3,0,21,false,MO,E

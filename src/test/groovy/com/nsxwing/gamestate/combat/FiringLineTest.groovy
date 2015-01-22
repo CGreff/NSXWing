@@ -38,6 +38,18 @@ class FiringLineTest {
     }
 
     @Test
+    void 'should return correctly when the line has a negative direction.'() {
+        firingLine = new FiringLine(originX: 0, originY: 0, lineX: 0, lineY: -28.2842712474619)
+        Coordinate coord = new Coordinate(x: 10, y: -20)
+        assert firingLine.isLeftOfLine(coord)
+        assert !firingLine.isRightOfLine(coord)
+
+        coord = new Coordinate(x: -10, y: -20)
+        assert !firingLine.isLeftOfLine(coord)
+        assert firingLine.isRightOfLine(coord)
+    }
+
+    @Test
     void 'should behave properly when the firing line is not 0 centered.'() {
         firingLine = new FiringLine(originX: 50, originY: 50, lineX: 50, lineY: 78.2842712474619)
         Coordinate coord = new Coordinate(x: 60, y: 20)

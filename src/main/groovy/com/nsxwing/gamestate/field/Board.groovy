@@ -2,6 +2,7 @@ package com.nsxwing.gamestate.field
 
 import com.nsxwing.agents.Player
 import com.nsxwing.agents.PlayerAgent
+import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.gamestate.combat.FiringLine
 import com.nsxwing.gamestate.combat.Target
 
@@ -11,17 +12,23 @@ import com.nsxwing.gamestate.combat.Target
 public class Board {
     static final int X_SIZE = 913
     static final int Y_SIZE = 913
-
-    final Player CHAMPION
-    final Player CHALLENGER
-
-    Board(Player champ, Player scrub) {
-        CHAMPION = champ
-        CHALLENGER = scrub
+    static final Closure MOVEMENT_COMPARATOR = {
+        (it.pilot.pilotSkill) * -1
+    }
+    static final Closure COMBAT_COMPARATOR = {
+        it.pilot.pilotSkill
     }
 
-    Set<Target> getVisibleEnemiesFor(Player player, PlayerAgent agent) {
-        Player opponent = (player == CHAMPION) ? CHALLENGER : CHAMPION
+    final Player champ
+    final Player scrub
+
+    Board(Player champ, Player scrub) {
+        this.champ = champ
+        this.scrub = scrub
+    }
+
+    Set<Target> getVisibleEnemiesFor(PlayerAgent agent) {
+        Player opponent = (agent.owningPlayer == PlayerIdentifier.CHAMP) ? scrub : champ
         Set<Target> visibleEnemies = []
 
         for (PlayerAgent enemyAgent : opponent.agents) {
@@ -66,5 +73,12 @@ public class Board {
      */
     private boolean isTargetable(List<FiringLine> firingLines, Coordinate coordinate) {
         firingLines.get(0).isRightOfLine(coordinate) && firingLines.get(1).isLeftOfLine(coordinate)
+    }
+
+    List<PlayerAgent> getCombinedAgentList(Closure comparator) {
+        List<PlayerAgent> combinedList = []
+        Collections.copy(combinedList, champ.agents)
+        combinedList.addAll(scrub.agents)
+        combinedList.sort(comparator)
     }
 }

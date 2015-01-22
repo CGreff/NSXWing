@@ -35,25 +35,10 @@ class PilotConstructor {
 
         while(pilotInfoLine) {
             String[] pilotInfo = pilotInfoLine.split(',')
-            String mapKey = pilotInfo[0]
-            Ship ship = ShipConstructor.getShip(pilotInfo[1])
-            Set<EquipmentSlot> equipmentSlots = []
+            String packageId = pilotInfo[0]
+            String pilotName = pilotInfo[1]
 
-            for (int i = 9; i < pilotInfo.length; i++) {
-                equipmentSlots.add(new EquipmentSlot(type: EQUIPMENT_TYPE_MAP.get(pilotInfo[i])))
-            }
-
-            map.put(mapKey, Class.forName("com.nsxwing.components.pilots.${mapKey.replaceAll(' ', '')}").newInstance(
-                    ship: ship,
-                    pilotSkill: Integer.parseInt(pilotInfo[2]),
-                    attack: Integer.parseInt(pilotInfo[3]),
-                    agility: Integer.parseInt(pilotInfo[4]),
-                    hullPoints: Integer.parseInt(pilotInfo[5]),
-                    shieldPoints: Integer.parseInt(pilotInfo[6]),
-                    pointCost: Integer.parseInt(pilotInfo[7]),
-                    isUnique: Boolean.parseBoolean(pilotInfo[8]),
-                    equipments: equipmentSlots
-            ) as Pilot)
+            map.put(pilotName, Class.forName("com.nsxwing.components.pilots.${packageId}.${pilotName.replaceAll(' ', '')}").newInstance() as Pilot)
             pilotInfoLine = reader.readLine()
         }
 

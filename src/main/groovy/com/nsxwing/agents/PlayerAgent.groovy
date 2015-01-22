@@ -1,7 +1,7 @@
-package com.nsxwing.agents;
+package com.nsxwing.agents
 
+import com.nsxwing.components.meta.PlayerIdentifier;
 import com.nsxwing.components.pilots.Pilot
-import com.nsxwing.gamestate.Phase
 import com.nsxwing.gamestate.combat.FiringLine
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.Position
@@ -11,9 +11,9 @@ import com.nsxwing.gamestate.field.Position
  * its current position and its current phase (activation (movement/ability), combat whatever).
  */
 public class PlayerAgent {
+    PlayerIdentifier owningPlayer
     Pilot pilot
     Position position
-    Phase phase
 
     /*
      * Always returns the left line in position 0 and the right line in position 1.
