@@ -12,17 +12,17 @@ imperials.tieadvanced,Storm Squadron Pilot
 imperials.tieadvanced,Maarek Stele
 imperials.tieadvanced,Darth Vader
 
-imperials.Alpha Squadron Pilot,TIE Interceptor,1,3,3,3,0,18,false,MO
-imperials.Avenger Squadron Pilot,TIE Interceptor,3,3,3,3,0,20,false,MO
-imperials.Saber Squadron Pilot,TIE Interceptor,4,3,3,3,0,21,false,MO,E
-imperials.Royal Guard Pilot,TIE Interceptor,6,3,3,3,0,22,false,MO,E,TI
-imperials.Fel's Wrath,TIE Interceptor,4,3,3,3,0,23,true,MO,TI
-imperials.Lieutenant Lorrir,TIE Interceptor,5,3,3,3,0,23,true,MO,TI
-imperials.Kir Kanos,TIE Interceptor,6,3,3,3,0,24,true,MO,TI
-imperials.Tetran Cowall,TIE Interceptor,7,3,3,3,0,24,true,MO,E,TI
-imperials.Turr Phennir,TIE Interceptor,7,3,3,3,0,25,true,MO,E,TI
-imperials.Carnor Jax,TIE Interceptor,8,3,3,3,0,26,true,MO,E,TI
-imperials.Soontir Fel,TIE Interceptor,9,3,3,3,0,27,true,MO,E,TI
+imperials.tieinterceptor,Alpha Squadron Pilot
+imperials.tieinterceptor,Avenger Squadron Pilot
+imperials.tieinterceptor,Saber Squadron Pilot
+imperials.tieinterceptor,Royal Guard Pilot
+imperials.tieinterceptor,Fel's Wrath
+imperials.tieinterceptor,Lieutenant Lorrir
+imperials.tieinterceptor,Kir Kanos
+imperials.tieinterceptor,Tetran Cowall
+imperials.tieinterceptor,Turr Phennir
+imperials.tieinterceptor,Carnor Jax
+imperials.tieinterceptor,Soontir Fel
 imperials.Scimitar Squadron Pilot,TIE Bomber,2,2,2,6,0,16,false,MO,TO,TO,MI,MI,B
 imperials.Gamma Squadron Pilot,TIE Bomber,4,2,2,6,0,18,false,MO,TO,TO,MI,MI,B
 imperials.Captain Jonus,TIE Bomber,6,2,2,6,0,22,true,MO,E,TO,TO,MI,MI,B

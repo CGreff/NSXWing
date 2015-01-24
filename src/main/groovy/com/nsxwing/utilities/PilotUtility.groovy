@@ -15,6 +15,8 @@ class PilotUtility {
     static {
         Map<String, Pilot> map = [:]
 
+
+
         //The CSV should have each line as a new ship with the format going: Pilot Name,Ship Name,Pilot Skill,Attack,Agility,Hull,Shield,Cost,Modification Slots (see map)
         BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemClassLoader().getResourceAsStream('Pilots.csv')))
         String pilotInfoLine = reader.readLine()
