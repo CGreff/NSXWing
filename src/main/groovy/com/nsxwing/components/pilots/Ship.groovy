@@ -8,7 +8,6 @@ import groovy.transform.Immutable
 /**
  * Class describing a Ship and its contained field(s).
  */
-@Immutable(copyWith = true)
 public class Ship {
     Set<Maneuver> maneuvers
     Set<Action> actions

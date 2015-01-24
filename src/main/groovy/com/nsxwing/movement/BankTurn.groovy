@@ -8,8 +8,8 @@ import com.nsxwing.gamestate.field.Position
  */
 public class BankTurn extends Maneuver {
 
-    private final double radius
-    private final ManeuverDifficulty difficulty
+    double radius
+    ManeuverDifficulty difficulty
 
     BankTurn(int distance, ManeuverDifficulty difficulty) {
         this.radius = 64 + (distance * 55)
