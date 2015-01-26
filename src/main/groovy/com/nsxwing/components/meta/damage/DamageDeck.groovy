@@ -4,11 +4,10 @@ package com.nsxwing.components.meta.damage
  * Damage card deck. Shuffles the cards then deals them out.
  */
 class DamageDeck {
-    //TODO: One damage deck per player. Later.
-    private static List<DamageCard> DAMAGE_DECK
+    private final List<DamageCard> damageDeck
 
-    static {
-        DAMAGE_DECK = [
+    DamageDeck() {
+        damageDeck = [
                 new BlindedPilot(), new BlindedPilot(), new ConsoleFire(), new ConsoleFire(), new DamagedCockpit(), new DamagedCockpit(),
                 new DamagedEngine(), new DamagedEngine(), new DamagedSensorArray(), new DamagedSensorArray(), new InjuredPilot(), new InjuredPilot(),
                 new MinorExplosion(), new MinorExplosion(), new MinorHullBreach(), new MinorHullBreach(), new MunitionsFailure(), new MunitionsFailure(),
@@ -17,10 +16,10 @@ class DamageDeck {
                 new DirectHit(), new DirectHit()
         ]
 
-        Collections.shuffle(DAMAGE_DECK)
+        Collections.shuffle(damageDeck)
     }
 
-    static DamageCard draw() {
-        DAMAGE_DECK.remove(0)
+    DamageCard draw() {
+        damageDeck.remove(0)
     }
 }

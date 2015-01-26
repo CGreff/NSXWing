@@ -13,7 +13,7 @@ class MunitionsFailure extends DamageCard {
 
     @Override
     void resolveCrit(Pilot pilot) {
-        //TODO: Figure out how to determine which secondary weapon is best to remove, instead of all of them (lol).
-        pilot.equipments.removeAll { SECONDARY_WEAPON_TYPES.contains(it.type) }
+        //Removes the lowest point cost secondary weapon.
+        pilot.equipments.findAll { SECONDARY_WEAPON_TYPES.contains(it.type) }.sort { it.equipment.pointCost }.remove(0)
     }
 }

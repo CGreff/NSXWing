@@ -2,6 +2,7 @@ package com.nsxwing.agents
 
 import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
+import com.nsxwing.components.meta.damage.DamageDeck
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.Position
 import com.nsxwing.utilities.PilotUtility
@@ -13,6 +14,7 @@ public class Player {
     PlayerIdentifier identifier
     List<PlayerAgent> agents
     Faction faction
+    DamageDeck damageDeck
     int costOfList
 
     void buildList() {
