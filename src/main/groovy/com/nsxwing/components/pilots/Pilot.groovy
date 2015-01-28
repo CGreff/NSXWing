@@ -22,11 +22,11 @@ public abstract class Pilot {
     boolean isUnique
     int numStressTokens
 
-    void sufferDamage(DamageDeck damageDeck, boolean isCritical) {
+    void sufferDamage(boolean isCritical) {
         if (shieldPoints) {
             shieldPoints--
         } else {
-            DamageCard damageCard = damageDeck.draw()
+            DamageCard damageCard = DamageDeck.draw()
             if (isCritical) {
                 damageCard.isCritical = true
                 damageCard.resolveCrit(this)
