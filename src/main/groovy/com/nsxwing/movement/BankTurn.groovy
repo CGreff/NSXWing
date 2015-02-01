@@ -11,13 +11,14 @@ public class BankTurn extends Maneuver {
     double radius
     ManeuverDifficulty difficulty
 
-    BankTurn(int distance, ManeuverDifficulty difficulty) {
+    BankTurn(int distance, ManeuverDifficulty difficulty, Direction direction) {
         this.radius = 64 + (distance * 55)
         this.difficulty = difficulty
+        this.direction = direction
     }
 
     @Override
-    public Position move(Position position, Direction direction) {
+    public Position move(Position position) {
         Position localPosition = rotatePosition(position, -position.heading)
         double heading = (direction == Direction.LEFT) ? -Math.PI / 4 : Math.PI / 4
 

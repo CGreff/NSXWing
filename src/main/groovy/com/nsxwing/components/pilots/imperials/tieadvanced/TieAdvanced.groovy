@@ -9,6 +9,7 @@ import com.nsxwing.components.pilots.Pilot
 import com.nsxwing.components.pilots.Ship
 import com.nsxwing.gamestate.combat.FiringArc
 import com.nsxwing.movement.BankTurn
+import com.nsxwing.movement.Direction
 import com.nsxwing.movement.Forward
 import com.nsxwing.movement.Koiogran
 import com.nsxwing.movement.Maneuver
@@ -25,11 +26,16 @@ class TieAdvanced extends Pilot {
             new Forward(4, ManeuverDifficulty.WHITE),
             new Forward(5, ManeuverDifficulty.WHITE),
             new Koiogran(4, ManeuverDifficulty.RED),
-            new BankTurn(1, ManeuverDifficulty.GREEN),
-            new BankTurn(2, ManeuverDifficulty.WHITE),
-            new BankTurn(3, ManeuverDifficulty.WHITE),
-            new Turn(2, ManeuverDifficulty.WHITE),
-            new Turn(3, ManeuverDifficulty.WHITE)
+            new BankTurn(1, ManeuverDifficulty.GREEN, Direction.LEFT),
+            new BankTurn(2, ManeuverDifficulty.WHITE, Direction.LEFT),
+            new BankTurn(3, ManeuverDifficulty.WHITE, Direction.LEFT),
+            new BankTurn(1, ManeuverDifficulty.GREEN, Direction.RIGHT),
+            new BankTurn(2, ManeuverDifficulty.WHITE, Direction.RIGHT),
+            new BankTurn(3, ManeuverDifficulty.WHITE, Direction.RIGHT),
+            new Turn(2, ManeuverDifficulty.WHITE, Direction.LEFT),
+            new Turn(3, ManeuverDifficulty.WHITE, Direction.LEFT),
+            new Turn(2, ManeuverDifficulty.WHITE, Direction.RIGHT),
+            new Turn(3, ManeuverDifficulty.WHITE, Direction.RIGHT)
     ]
 
     static final Set<Action> ACTIONS = [

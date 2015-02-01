@@ -8,7 +8,10 @@ import com.nsxwing.gamestate.field.Position
  */
 abstract class Maneuver {
 
-    public abstract Position move(Position position, Direction direction)
+    Direction direction
+    ManeuverDifficulty difficulty
+
+    public abstract Position move(Position position)
 
     Position rotatePosition(Position position, double radiansCW) {
         new Position(

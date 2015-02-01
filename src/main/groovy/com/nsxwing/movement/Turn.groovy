@@ -11,13 +11,14 @@ public class Turn extends Maneuver {
     double radius
     ManeuverDifficulty difficulty
 
-    Turn(int distance, ManeuverDifficulty difficulty) {
+    Turn(int distance, ManeuverDifficulty difficulty, Direction direction) {
         this.radius = 28.28427124746191 + (distance * 28.28427124746191)
         this.difficulty = difficulty
+        this.direction = direction
     }
 
     @Override
-    public Position move(Position position, Direction direction) {
+    public Position move(Position position) {
         Position localPosition = rotatePosition(position, -position.heading)
         double heading = (direction == Direction.LEFT) ? -Math.PI / 2 : Math.PI / 2
 

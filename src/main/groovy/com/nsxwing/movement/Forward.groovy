@@ -17,7 +17,7 @@ public class Forward extends Maneuver {
     }
 
     @Override
-    public Position move(Position position, Direction direction) {
+    public Position move(Position position) {
         Position localPosition = rotatePosition(position, -position.heading)
         Position newLocalPosition = new Position(
                 center: new Coordinate(x: localPosition.center.x, y: localPosition.center.y + moveDistance),

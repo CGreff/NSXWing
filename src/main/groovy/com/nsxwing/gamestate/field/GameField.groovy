@@ -5,6 +5,7 @@ import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.gamestate.combat.FiringLine
 import com.nsxwing.gamestate.combat.Target
+import com.nsxwing.movement.Maneuver
 
 /**
  * Class describing the playing field. (3' x 3')
@@ -13,28 +14,8 @@ public class GameField {
 
     static final int X_SIZE = 913
     static final int Y_SIZE = 913
-    static PlayerIdentifier PLAYER_WITH_INITIATIVE
 
-    static final Closure ACTIVATION_COMPARATOR = {
-        double initiativeModifier = it.owningPlayer == PLAYER_WITH_INITIATIVE ? 0.1 : 0
-        it.pilot.pilotSkill - initiativeModifier
-    }
-
-    static final Closure COMBAT_COMPARATOR = {
-        double initiativeModifier = it.owningPlayer == PLAYER_WITH_INITIATIVE ? 0.1 : 0
-        (it.pilot.pilotSkill - initiativeModifier) * -1.0
-    }
-
-    final Player champ
-    final Player scrub
-
-    GameField(Player champ, Player scrub) {
-        this.champ = champ
-        this.scrub = scrub
-        PLAYER_WITH_INITIATIVE = determineInitiative()
-    }
-
-    Set<Target> getTargetsFor(PlayerAgent agent) {
+    Set<Target> getTargetsFor(Player champ, Player scrub, PlayerAgent agent) {
         Player opponent = (agent.owningPlayer == PlayerIdentifier.CHAMP) ? scrub : champ
         Set<Target> visibleEnemies = []
         int range
@@ -54,10 +35,14 @@ public class GameField {
         visibleEnemies
     }
 
-    List<PlayerAgent> getCombinedAgentList(Closure comparator) {
-        List<PlayerAgent> combinedList = new ArrayList(champ.agents)
-        combinedList.addAll(scrub.agents)
-        combinedList.sort(comparator)
+    boolean isOutOfBounds(List<Coordinate> boxPoints) {
+        for (Coordinate point : boxPoints) {
+            if (point.x < 0 || point.x > X_SIZE || point.y < 0 || point.y > Y_SIZE) {
+                return true
+            }
+        }
+
+        false
     }
 
     private int getRangeToTarget(PlayerAgent target, PlayerAgent agent) {
@@ -80,9 +65,5 @@ public class GameField {
      */
     private boolean isTargetable(List<FiringLine> firingLines, Coordinate coordinate) {
         firingLines.get(0).isRightOfLine(coordinate) && firingLines.get(1).isLeftOfLine(coordinate)
-    }
-
-    private PlayerIdentifier determineInitiative() {
-        (champ.costOfList <= scrub.costOfList) ? PlayerIdentifier.CHAMP : PlayerIdentifier.SCRUB
     }
 }
