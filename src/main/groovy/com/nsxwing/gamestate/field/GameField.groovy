@@ -15,9 +15,9 @@ public class GameField {
     static final int X_SIZE = 913
     static final int Y_SIZE = 913
 
-    Set<Target> getTargetsFor(Player champ, Player scrub, PlayerAgent agent) {
+    List<Target> getTargetsFor(Player champ, Player scrub, PlayerAgent agent) {
         Player opponent = (agent.owningPlayer == PlayerIdentifier.CHAMP) ? scrub : champ
-        Set<Target> visibleEnemies = []
+        List<Target> visibleEnemies = []
         int range
 
         for (PlayerAgent enemyAgent : opponent.agents) {
@@ -25,7 +25,7 @@ public class GameField {
                 if (isTargetable(agent.getFiringArc(), shipCoordinates)) {
                     range = getRangeToTarget(enemyAgent, agent)
                     if (range <= 3 && range != 0) {
-                        visibleEnemies.add(new Target(targetAgent: enemyAgent, range: range, obstructed: false))
+                        visibleEnemies.add(new Target(targetAgent: enemyAgent, range: range, obstructed: false, priority: getTargetPriority(enemyAgent)))
                         break;
                     }
                 }
@@ -33,6 +33,10 @@ public class GameField {
         }
 
         visibleEnemies
+    }
+
+    double getTargetPriority(PlayerAgent agent) {
+        agent.pointCost / ((agent.pilot.hullPoints + agent.pilot.shieldPoints) * agent.pilot.agility)
     }
 
     boolean isOutOfBounds(List<Coordinate> boxPoints) {
@@ -43,6 +47,13 @@ public class GameField {
         }
 
         false
+    }
+
+    /*
+     * Returns whether the coordinate is between the left and right firing lines or not.
+     */
+    boolean isTargetable(List<FiringLine> firingLines, Coordinate coordinate) {
+        firingLines.get(0).isRightOfLine(coordinate) && firingLines.get(1).isLeftOfLine(coordinate)
     }
 
     private int getRangeToTarget(PlayerAgent target, PlayerAgent agent) {
@@ -58,12 +69,5 @@ public class GameField {
 
     private double getDistanceBetween(Coordinate c1, Coordinate c2) {
         Math.sqrt(Math.pow(c1.y - c2.y, 2) + Math.pow(c1.x - c2.x, 2))
-    }
-
-    /*
-     * Returns whether the coordinate is between the left and right firing lines or not.
-     */
-    private boolean isTargetable(List<FiringLine> firingLines, Coordinate coordinate) {
-        firingLines.get(0).isRightOfLine(coordinate) && firingLines.get(1).isLeftOfLine(coordinate)
     }
 }

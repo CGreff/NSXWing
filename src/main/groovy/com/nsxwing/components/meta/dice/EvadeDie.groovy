@@ -34,4 +34,14 @@ class EvadeDie implements Die {
             result = DiceResult.NOTHING
         }
     }
+
+    static List<EvadeDie> getDice(int number) {
+        List<EvadeDie> dice = []
+        for (int i = 0; i < number; i++) {
+            dice.add(new EvadeDie())
+            dice.get(i).roll()
+        }
+
+        dice
+    }
 }

@@ -13,6 +13,6 @@ class InjuredPilot extends DamageCard {
     @Override
     void resolveCrit(Pilot pilot) {
         pilot.pilotAbility = { it }
-        pilot.equipments.removeAll { it.type == EquipmentType.ELITE_TALENT }
+        pilot.equipment.removeAll { it.type == EquipmentType.ELITE_TALENT }
     }
 }

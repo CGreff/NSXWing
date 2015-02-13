@@ -8,6 +8,7 @@ import com.nsxwing.agents.PlayerAgent
 class TargetLock extends Action {
 
     Set<PlayerAgent> targets = [] as Set
+    int actionPriority = 7
 
     @Override
     void execute(PlayerAgent target) {

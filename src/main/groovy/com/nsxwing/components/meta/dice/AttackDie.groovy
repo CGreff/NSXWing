@@ -36,4 +36,14 @@ class AttackDie implements Die {
             result = DiceResult.NOTHING
         }
     }
+
+    static List<AttackDie> getDice(int number) {
+        List<AttackDie> dice = []
+        for (int i = 0; i < number; i++) {
+            dice.add(new AttackDie())
+            dice.get(i).roll()
+        }
+
+        dice
+    }
 }

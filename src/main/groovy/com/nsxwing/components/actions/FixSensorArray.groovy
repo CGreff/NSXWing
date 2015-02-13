@@ -11,6 +11,7 @@ import com.nsxwing.components.meta.dice.DiceResult
 class FixSensorArray extends Action {
 
     private Set<Action> formerActions
+    int actionPriority = 1
 
     @Override
     void execute(PlayerAgent target) {

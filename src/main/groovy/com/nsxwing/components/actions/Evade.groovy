@@ -8,6 +8,7 @@ import com.nsxwing.agents.PlayerAgent
 class Evade extends Action {
 
     int availableEvadeTokens
+    int actionPriority = 7
 
     @Override
     void execute(PlayerAgent target) {

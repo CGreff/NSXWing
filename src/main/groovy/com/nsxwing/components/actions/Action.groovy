@@ -8,6 +8,7 @@ import com.nsxwing.agents.PlayerAgent
 abstract class Action {
 
     boolean hasExecuted
+    int actionPriority = 0
 
     void execute(PlayerAgent target) {
         hasExecuted = true

@@ -15,6 +15,7 @@ public class PlayerAgent {
     PlayerIdentifier owningPlayer
     Pilot pilot
     Position position
+    int pointCost
 
     /*
      * Always returns the left line in position 0 and the right line in position 1.

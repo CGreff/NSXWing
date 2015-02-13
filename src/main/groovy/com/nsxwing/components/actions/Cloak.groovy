@@ -8,6 +8,7 @@ import com.nsxwing.agents.PlayerAgent
 class Cloak extends Action {
 
     boolean isCloaked
+    int actionPriority = 1
 
     @Override
     void execute(PlayerAgent target) {

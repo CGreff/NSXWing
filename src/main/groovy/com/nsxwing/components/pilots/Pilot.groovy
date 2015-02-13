@@ -11,7 +11,7 @@ import com.nsxwing.components.meta.damage.DamageDeck
 public abstract class Pilot {
     Ship ship
     Closure pilotAbility
-    Set<EquipmentSlot> equipments
+    Set<EquipmentSlot> equipment
     List<DamageCard> damageCards
     int pilotSkill
     int attack

@@ -4,7 +4,6 @@ import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.Position
-import com.nsxwing.movement.Maneuver
 import com.nsxwing.utilities.PilotUtility
 
 /**
@@ -29,9 +28,5 @@ public class Player {
                 new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 290, y: y), heading: heading), owningPlayer: identifier),
                 new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 345, y: y), heading: heading), owningPlayer: identifier)
         ]
-    }
-
-    void chooseManeuver(PlayerAgent agent) {
-        Set<Maneuver> possibleMoves = agent.pilot.ship.maneuvers
     }
 }

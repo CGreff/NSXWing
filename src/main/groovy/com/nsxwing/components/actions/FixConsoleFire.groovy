@@ -8,6 +8,8 @@ import com.nsxwing.components.meta.damage.ConsoleFire
  */
 class FixConsoleFire extends Action {
 
+    int actionPriority = 10
+
     @Override
     void execute(PlayerAgent target) {
         hasExecuted = true

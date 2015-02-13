@@ -8,6 +8,7 @@ import com.nsxwing.agents.PlayerAgent
 class Focus extends Action {
 
     int availableFocusTokens
+    int actionPriority = 8
 
     @Override
     void execute(PlayerAgent target) {

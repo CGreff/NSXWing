@@ -10,6 +10,8 @@ import com.nsxwing.components.meta.dice.DiceResult
  */
 class FixStructuralDamage extends Action {
 
+    int actionPriority = 10
+
     @Override
     void execute(PlayerAgent target) {
         AttackDie attackDie = new AttackDie()

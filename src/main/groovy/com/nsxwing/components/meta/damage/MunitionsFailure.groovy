@@ -14,6 +14,6 @@ class MunitionsFailure extends DamageCard {
     @Override
     void resolveCrit(Pilot pilot) {
         //Removes the lowest point cost secondary weapon.
-        pilot.equipments.findAll { SECONDARY_WEAPON_TYPES.contains(it.type) }.sort { it.equipment.pointCost }.remove(0)
+        pilot.equipment.findAll { SECONDARY_WEAPON_TYPES.contains(it.type) }.sort { it.equipment.pointCost }.remove(0)
     }
 }
