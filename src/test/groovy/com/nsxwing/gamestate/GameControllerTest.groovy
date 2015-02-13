@@ -1,10 +1,13 @@
-package com.nsxwing.gamestate.field
+package com.nsxwing.gamestate
 
 import com.nsxwing.agents.Player
 import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.gamestate.combat.Target
+import com.nsxwing.gamestate.field.Coordinate
+import com.nsxwing.gamestate.field.GameField
+import com.nsxwing.gamestate.field.Position
 import com.nsxwing.utilities.PilotUtility
 import org.junit.Before
 import org.junit.Test
@@ -12,10 +15,11 @@ import org.junit.Test
 /**
  *
  */
-class GameFieldTest {
+class GameControllerTest {
     Player champ
     Player scrub
     GameField field
+    GameController controller
 
     @Before
     void setUp() {
@@ -34,12 +38,13 @@ class GameFieldTest {
                 new PlayerAgent(pilot: PilotUtility.getPilot('Darth Vader'), position: new Position(center: new Coordinate(x: 345, y: 70), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB)
         ])
 
-        field = new GameField(champ, scrub)
+        field = new GameField()
+        controller = new GameController(champ, scrub)
     }
 
     @Test
     void 'should correctly sort from lowest pilot skill first for activation'() {
-        List<PlayerAgent> combinedAgents = field.getCombinedAgentList(field.ACTIVATION_COMPARATOR)
+        List<PlayerAgent> combinedAgents = controller.getCombinedAgentList(controller.ACTIVATION_COMPARATOR)
         assert combinedAgents.size() == 10
         assert combinedAgents.get(0).pilot.pilotSkill < combinedAgents.get(9).pilot.pilotSkill
         assert combinedAgents.get(0).owningPlayer == PlayerIdentifier.SCRUB
@@ -47,7 +52,7 @@ class GameFieldTest {
 
     @Test
     void 'should correctly sort from highest pilot skill first for combat'() {
-        List<PlayerAgent> combinedAgents = field.getCombinedAgentList(field.COMBAT_COMPARATOR)
+        List<PlayerAgent> combinedAgents = controller.getCombinedAgentList(controller.COMBAT_COMPARATOR)
         assert combinedAgents.size() == 10
         assert combinedAgents.get(0).pilot.pilotSkill > combinedAgents.get(9).pilot.pilotSkill
         assert combinedAgents.get(0).owningPlayer == PlayerIdentifier.SCRUB
@@ -55,14 +60,14 @@ class GameFieldTest {
 
     @Test
     void 'should get the appropriate targets for Backstabber'() {
-        Set<Target> targets = field.getTargetsFor(field.champ.agents.get(2))
+        Set<Target> targets = field.getTargetsFor(champ, scrub, champ.agents.get(2))
         assert targets.size() == 3
-        assert !targets.contains(field.scrub.agents.get(4))
+        assert !targets.contains(scrub.agents.get(4))
     }
 
     @Test
     void 'should get all targets for Howlrunner'() {
-        Set<Target> targets = field.getTargetsFor(field.scrub.agents.get(3))
+        Set<Target> targets = field.getTargetsFor(champ, scrub, scrub.agents.get(3))
         assert targets.size() == 5
     }
 }
