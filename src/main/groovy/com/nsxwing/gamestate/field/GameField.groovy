@@ -67,7 +67,7 @@ public class GameField {
         }.get(0)
     }
 
-    private double getDistanceBetween(Coordinate c1, Coordinate c2) {
+    double getDistanceBetween(Coordinate c1, Coordinate c2) {
         Math.sqrt(Math.pow(c1.y - c2.y, 2) + Math.pow(c1.x - c2.x, 2))
     }
 }

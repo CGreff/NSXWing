@@ -19,9 +19,10 @@ public class Main {
 
         GameController controller = new GameController(champ, scrub)
 
-        log.info("Game begin")
+        int turnNumber = 1
+        log.info("Starting turn 1")
         Player winner = controller.doTurn()
-        int turnNumber = 0
+
         while (!winner) {
             turnNumber++
             log.info("Starting turn ${turnNumber}")

@@ -10,4 +10,9 @@ class Target {
     int range
     boolean obstructed
     double priority
+
+    @Override
+    String toString() {
+        targetAgent.toString()
+    }
 }

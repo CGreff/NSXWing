@@ -5,9 +5,11 @@ import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.actions.Action
 import com.nsxwing.components.actions.Focus
 import com.nsxwing.components.meta.PlayerIdentifier
+import com.nsxwing.components.meta.damage.DamageCard
 import com.nsxwing.components.meta.dice.AttackDie
 import com.nsxwing.components.meta.dice.DiceResult
 import com.nsxwing.components.meta.dice.EvadeDie
+import com.nsxwing.components.pilots.Pilot
 import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.GameField
@@ -45,8 +47,11 @@ class GameController {
     }
 
     Player doTurn() {
+        log.info("Planning turn")
         Map<PlayerAgent, Maneuver> chosenManeuvers = planTurn()
+        log.info("Begin Activation Phase")
         doActivationPhase(chosenManeuvers)
+        log.info("Begin Combat Phase")
         doCombatPhase()
         checkForWinner()
     }
@@ -72,23 +77,37 @@ class GameController {
 
     double getManeuverStrength(PlayerAgent agent, Maneuver maneuver) {
         double strength = 1.0
-        double enemyStrengthModifier = 1.0
         Position position = maneuver.move(agent.position)
-        for (PlayerAgent enemy : agent.owningPlayer == PlayerIdentifier.CHAMP ? champ.agents : scrub.agents) {
-            boolean canTarget = false
-
-            for (Coordinate point : position.boxPoints) {
-                if (gameField.isTargetable(enemy.firingArc, point)) {
-                    canTarget = true
+        List<PlayerAgent> enemies = agent.owningPlayer == PlayerIdentifier.CHAMP ? champ.agents.sort { it.pointCost * -1 } : scrub.agents.sort { it.pointCost * -1 }
+        PlayerAgent bestTarget
+        for (PlayerAgent enemy : enemies) {
+            for (Coordinate point : enemy.position.boxPoints) {
+                if (gameField.isTargetable(agent.firingArc, point)) {
+                    bestTarget = enemy
                     break
                 }
             }
 
-            if (canTarget) {
-                enemyStrengthModifier /= enemy.pilot.attack
+            if (bestTarget) {
+                break
             }
         }
-        strength * enemyStrengthModifier
+
+        if (bestTarget) {
+            strength = bestTarget.pointCost
+        } else {
+            strength = 1000 - (gameField.getDistanceBetween(position.center, enemies.get(0).position.center))
+        }
+
+        boolean hasNextMove = false
+        for (Maneuver nextManeuver : agent.pilot.ship.maneuvers) {
+            if (isLegalManeuver(position, nextManeuver)) {
+                hasNextMove = true
+                break
+            }
+        }
+
+        hasNextMove ? strength : 0
     }
 
     void doActivationPhase(Map<PlayerAgent, Maneuver> chosenManeuvers) {
@@ -109,7 +128,7 @@ class GameController {
                 log.info("${agent} is attacking ${target}")
                 doCombat(agent, target)
 
-                if (target.targetAgent.pilot.isDestroyed()) {
+                if (isDestroyed(target.targetAgent.pilot)) {
                     Player affectedPlayer = target.targetAgent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
                     affectedPlayer.agents.remove(target.targetAgent)
                     log.info("${agent.pilot} destroyed ${target.targetAgent.pilot}")
@@ -127,6 +146,11 @@ class GameController {
     boolean isLegalManeuver(PlayerAgent agent, Maneuver maneuver) {
         Position newPosition = maneuver.move(agent.position)
         !gameField.isOutOfBounds(newPosition.boxPoints) && !(agent.pilot.numStressTokens > 0 && maneuver.difficulty == ManeuverDifficulty.RED)
+    }
+
+    boolean isLegalManeuver(Position position, Maneuver maneuver) {
+        Position newPosition = maneuver.move(position)
+        !gameField.isOutOfBounds(newPosition.boxPoints)
     }
 
     private PlayerIdentifier determineInitiative() {
@@ -172,15 +196,25 @@ class GameController {
     //TODO: Fix this.
     private void doCombat(PlayerAgent agent, Target target) {
         List<AttackDie> attackDice = AttackDie.getDice(target.range == 1 ? agent.pilot.attack + 1 : agent.pilot.attack)
-        List<EvadeDie> evadeDice  = EvadeDie.getDice(target.range > 2 ? target.targetAgent.pilot.agility + 1 : target.targetAgent.pilot.agility)
         attackDice.removeAll { it.result == DiceResult.NOTHING || it.result == DiceResult.FOCUS }
+        List<EvadeDie> evadeDice  = EvadeDie.getDice(target.range > 2 ? target.targetAgent.pilot.agility + 1 : target.targetAgent.pilot.agility)
         evadeDice.removeAll { it.result == DiceResult.NOTHING || it.result == DiceResult.FOCUS }
 
         for (int i = 0; i < attackDice.size() - evadeDice.size(); i++) {
             //TODO: Crits
             target.targetAgent.pilot.sufferDamage(false)
-            log.info("${target.targetAgent} took ${attackDice.size() - evadeDice.size()} damage!")
+            log.info("${target.targetAgent} suffered a damage!")
         }
+    }
+
+    private boolean isDestroyed(Pilot pilot) {
+        int damage = 0
+
+        for (DamageCard damageCard : pilot.damageCards) {
+            damage += damageCard.damageValue
+        }
+
+        damage >= pilot.hullPoints
     }
 
     private class RankedManeuver {
