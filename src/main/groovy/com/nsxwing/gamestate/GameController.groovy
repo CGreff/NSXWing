@@ -65,7 +65,7 @@ class GameController {
                     }
                 }
             }
-            chosenManeuvers.put(agent, bestManeuver.maneuver)
+            chosenManeuvers.put(agent, bestManeuver?.maneuver)
         }
         chosenManeuvers
     }
@@ -106,9 +106,10 @@ class GameController {
             List<Target> targets = gameField.getTargetsFor(champ, scrub, agent).sort { it.priority }
             Target target = targets ? targets.get(0) : null
             if (target) {
+                log.info("${agent} is attacking ${target}")
                 doCombat(agent, target)
 
-                if (target.targetAgent.pilot.hullPoints == 0) {
+                if (target.targetAgent.pilot.isDestroyed()) {
                     Player affectedPlayer = target.targetAgent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
                     affectedPlayer.agents.remove(target.targetAgent)
                     log.info("${agent.pilot} destroyed ${target.targetAgent.pilot}")
@@ -125,7 +126,7 @@ class GameController {
 
     boolean isLegalManeuver(PlayerAgent agent, Maneuver maneuver) {
         Position newPosition = maneuver.move(agent.position)
-        !gameField.isOutOfBounds(newPosition.boxPoints) || !(agent.pilot.numStressTokens > 0 && maneuver.difficulty == ManeuverDifficulty.RED)
+        !gameField.isOutOfBounds(newPosition.boxPoints) && !(agent.pilot.numStressTokens > 0 && maneuver.difficulty == ManeuverDifficulty.RED)
     }
 
     private PlayerIdentifier determineInitiative() {
@@ -145,10 +146,17 @@ class GameController {
     }
 
     private void maneuver(PlayerAgent agent, Maneuver maneuver) {
-        agent.position = maneuver.move(agent.position)
-        log.info("${agent} is performing ${maneuver}")
-        if (maneuver.difficulty == ManeuverDifficulty.RED) {
-            agent.pilot.numStressTokens++
+        if (!maneuver) {
+            log.info("${agent} flew off the board.")
+            Player owningPlayer = agent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
+            owningPlayer.agents.remove(agent)
+        } else {
+            log.info("${agent} is performing ${maneuver}")
+            agent.position = maneuver.move(agent.position)
+
+            if (maneuver.difficulty == ManeuverDifficulty.RED) {
+                agent.pilot.numStressTokens++
+            }
         }
     }
 
@@ -171,6 +179,7 @@ class GameController {
         for (int i = 0; i < attackDice.size() - evadeDice.size(); i++) {
             //TODO: Crits
             target.targetAgent.pilot.sufferDamage(false)
+            log.info("${target.targetAgent} took ${attackDice.size() - evadeDice.size()} damage!")
         }
     }
 

@@ -19,7 +19,7 @@ import com.nsxwing.movement.Turn
  *
  */
 class TieFighter extends Pilot {
-    static final Set<Maneuver> MANEUVERS = [
+    private final Set<Maneuver> MANEUVERS = [
             new Forward(2, ManeuverDifficulty.GREEN),
             new Forward(3, ManeuverDifficulty.GREEN),
             new Forward(4, ManeuverDifficulty.WHITE),
@@ -38,7 +38,7 @@ class TieFighter extends Pilot {
             new Turn(3, ManeuverDifficulty.WHITE, Direction.RIGHT)
     ]
 
-    static final Set<Action> ACTIONS = [
+    private final Set<Action> ACTIONS = [
             new Focus(),
             new Evade(),
             new BarrelRoll()

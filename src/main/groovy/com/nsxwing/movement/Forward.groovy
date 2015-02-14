@@ -9,7 +9,6 @@ import com.nsxwing.gamestate.field.Position
 public class Forward extends Maneuver {
 
     double moveDistance
-    ManeuverDifficulty difficulty
 
     Forward(int distance, ManeuverDifficulty difficulty) {
         this.moveDistance = distance * 40 + 40

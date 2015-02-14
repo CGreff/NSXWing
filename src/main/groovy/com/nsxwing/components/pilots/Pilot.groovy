@@ -10,9 +10,9 @@ import com.nsxwing.components.meta.damage.DamageDeck
  */
 public abstract class Pilot {
     Ship ship
-    Closure pilotAbility
-    Set<EquipmentSlot> equipment
-    List<DamageCard> damageCards
+    Closure pilotAbility = { it }
+    Set<EquipmentSlot> equipment = []
+    List<DamageCard> damageCards = []
     int pilotSkill
     int attack
     int agility
@@ -34,6 +34,16 @@ public abstract class Pilot {
 
             damageCards.add(damageCard)
         }
+    }
+
+    boolean isDestroyed() {
+        int damage = 0
+
+        for (DamageCard damageCard : damageCards) {
+            damage += damageCard.damageValue
+        }
+
+        damage >= hullPoints
     }
 
     @Override

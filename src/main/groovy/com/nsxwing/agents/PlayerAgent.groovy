@@ -41,6 +41,6 @@ public class PlayerAgent {
 
     @Override
     String toString() {
-        "${owningPlayer} - ${pilot}"
+        "${owningPlayer} - ${pilot}:(${position.center.x},${position.center.y})"
     }
 }

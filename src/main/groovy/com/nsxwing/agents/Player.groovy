@@ -19,14 +19,19 @@ public class Player {
         double y = identifier == PlayerIdentifier.CHAMP ? 20 : 880
         double heading = identifier == PlayerIdentifier.CHAMP ? 0 : Math.PI
         agents = [
-                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 20, y: y), heading: heading), owningPlayer: identifier),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 65, y: y), heading: heading), owningPlayer: identifier),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 110, y: y), heading: heading), owningPlayer: identifier),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 155, y: y), heading: heading), owningPlayer: identifier),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 200, y: y), heading: heading), owningPlayer: identifier),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 245, y: y), heading: heading), owningPlayer: identifier),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 290, y: y), heading: heading), owningPlayer: identifier),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 345, y: y), heading: heading), owningPlayer: identifier)
+                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 20, y: y), heading: heading), owningPlayer: identifier, pointCost: 12),
+                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 65, y: y), heading: heading), owningPlayer: identifier, pointCost: 12),
+                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 110, y: y), heading: heading), owningPlayer: identifier, pointCost: 12),
+                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 155, y: y), heading: heading), owningPlayer: identifier, pointCost: 12),
+                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 200, y: y), heading: heading), owningPlayer: identifier, pointCost: 13),
+                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 245, y: y), heading: heading), owningPlayer: identifier, pointCost: 13),
+                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 290, y: y), heading: heading), owningPlayer: identifier, pointCost: 13),
+                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 345, y: y), heading: heading), owningPlayer: identifier, pointCost: 13)
         ]
+    }
+
+    @Override
+    String toString() {
+        identifier as String
     }
 }

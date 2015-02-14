@@ -9,7 +9,6 @@ import com.nsxwing.gamestate.field.Position
 public class Turn extends Maneuver {
 
     double radius
-    ManeuverDifficulty difficulty
 
     Turn(int distance, ManeuverDifficulty difficulty, Direction direction) {
         this.radius = 28.28427124746191 + (distance * 28.28427124746191)

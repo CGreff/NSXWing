@@ -9,7 +9,6 @@ import com.nsxwing.gamestate.field.Position
 public class Koiogran extends Maneuver {
 
     double moveDistance
-    ManeuverDifficulty difficulty
 
     Koiogran(int distance, ManeuverDifficulty difficulty) {
         this.moveDistance = distance * 40 + 40
