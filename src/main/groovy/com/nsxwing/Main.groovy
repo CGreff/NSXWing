@@ -4,7 +4,9 @@ import com.nsxwing.agents.Player
 import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.gamestate.GameController
+import groovy.util.logging.Slf4j
 
+@Slf4j
 public class Main {
 
     public static void main(String[] args) {
@@ -18,10 +20,13 @@ public class Main {
         GameController controller = new GameController(champ, scrub)
 
         Player winner = controller.doTurn()
+        int turnNumber = 0
         while (!winner) {
+            turnNumber++
+            log.info("Starting turn ${turnNumber}")
             winner = controller.doTurn()
         }
 
-        System.out.println("${winner} won!")
+        log.info("${winner} won on turn ${turnNumber}!")
     }
 }

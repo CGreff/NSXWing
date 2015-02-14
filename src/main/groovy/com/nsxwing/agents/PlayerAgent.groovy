@@ -38,4 +38,9 @@ public class PlayerAgent {
                  lineY: boxPoints.get(1).y
          ])]
     }
+
+    @Override
+    String toString() {
+        "${owningPlayer} - ${pilot}"
+    }
 }

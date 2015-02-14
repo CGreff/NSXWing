@@ -20,4 +20,9 @@ abstract class Maneuver {
                         y: -position.center.x * Math.sin(radiansCW) + position.center.y * Math.cos(radiansCW))),
                 heading: position.heading)
     }
+
+    @Override
+    String toString() {
+        "${this.getClass().simpleName} - ${direction}:${difficulty}"
+    }
 }

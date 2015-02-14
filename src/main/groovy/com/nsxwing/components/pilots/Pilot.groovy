@@ -35,4 +35,9 @@ public abstract class Pilot {
             damageCards.add(damageCard)
         }
     }
+
+    @Override
+    String toString() {
+        this.getClass().simpleName
+    }
 }

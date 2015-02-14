@@ -14,10 +14,12 @@ import com.nsxwing.gamestate.field.GameField
 import com.nsxwing.gamestate.field.Position
 import com.nsxwing.movement.Maneuver
 import com.nsxwing.movement.ManeuverDifficulty
+import groovy.util.logging.Slf4j
 
 /**
  *
  */
+@Slf4j
 class GameController {
 
     static PlayerIdentifier PLAYER_WITH_INITIATIVE
@@ -109,6 +111,7 @@ class GameController {
                 if (target.targetAgent.pilot.hullPoints == 0) {
                     Player affectedPlayer = target.targetAgent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
                     affectedPlayer.agents.remove(target.targetAgent)
+                    log.info("${agent.pilot} destroyed ${target.targetAgent.pilot}")
                 }
             }
         }
@@ -143,6 +146,7 @@ class GameController {
 
     private void maneuver(PlayerAgent agent, Maneuver maneuver) {
         agent.position = maneuver.move(agent.position)
+        log.info("${agent} is performing ${maneuver}")
         if (maneuver.difficulty == ManeuverDifficulty.RED) {
             agent.pilot.numStressTokens++
         }
