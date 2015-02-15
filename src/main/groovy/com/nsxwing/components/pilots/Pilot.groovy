@@ -20,7 +20,7 @@ public abstract class Pilot {
     int hullPoints
     int pointCost
     boolean isUnique
-    int numStressTokens
+    int numStressTokens = 0
 
     void sufferDamage(boolean isCritical) {
         if (shieldPoints) {

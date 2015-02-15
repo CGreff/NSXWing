@@ -80,22 +80,10 @@ class GameController {
         double strength = 1.0
         Position position = maneuver.move(agent.position)
         List<PlayerAgent> enemies = agent.owningPlayer == PlayerIdentifier.CHAMP ? champ.agents.sort { it.pointCost * -1 } : scrub.agents.sort { it.pointCost * -1 }
-        PlayerAgent bestTarget
-        for (PlayerAgent enemy : enemies) {
-            for (Coordinate point : enemy.position.boxPoints) {
-                if (gameField.isTargetable(agent.firingArc, point)) {
-                    bestTarget = enemy
-                    break
-                }
-            }
+        List<Target> targets = gameField.getTargetsFor(champ, scrub, agent)
 
-            if (bestTarget) {
-                break
-            }
-        }
-
-        if (bestTarget) {
-            strength = bestTarget.pointCost
+        if (targets) {
+            strength = targets.sort { (it.targetAgent.pointCost * -1) - (0.1 * it.targetAgent.pilot.damageCards.size()) }.get(0).targetAgent.pointCost
         } else {
             strength = 1000 - ((gameField.getDistanceBetween(position.center, enemies.get(0).position.center)) * (facingEnemies(agent, enemies) ? 0.1 : 1.0))
         }
