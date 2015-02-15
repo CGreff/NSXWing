@@ -6,7 +6,12 @@ import com.nsxwing.components.pilots.Pilot
  *
  */
 class NightBeast extends TieFighter {
-    final int pilotSkill = 5
-    final int pointCost = 15
-    final boolean isUnique = true
+
+    public NightBeast() {
+        super()
+        pilotSkill = 5
+        pointCost = 15
+        isUnique = true
+    }
+
 }

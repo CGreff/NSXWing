@@ -58,8 +58,9 @@ class GameController {
 
     Map<PlayerAgent, Maneuver> planTurn() {
         Map<PlayerAgent, Maneuver> chosenManeuvers = [:]
-        RankedManeuver bestManeuver = null
+        RankedManeuver bestManeuver
         for (PlayerAgent agent : getCombinedAgentList { it }) {
+            bestManeuver = null
             for (Maneuver maneuver : agent.pilot.ship.maneuvers) {
                 if (isLegalManeuver(agent, maneuver)) {
                     double strength = getManeuverStrength(agent, maneuver)
@@ -96,7 +97,7 @@ class GameController {
         if (bestTarget) {
             strength = bestTarget.pointCost
         } else {
-            strength = 1000 - (gameField.getDistanceBetween(position.center, enemies.get(0).position.center))
+            strength = 1000 - ((gameField.getDistanceBetween(position.center, enemies.get(0).position.center)) * (facingEnemies(agent, enemies) ? 0.1 : 1.0))
         }
 
         boolean hasNextMove = false
@@ -128,7 +129,7 @@ class GameController {
                 log.info("${agent} is attacking ${target}")
                 doCombat(agent, target)
 
-                if (isDestroyed(target.targetAgent.pilot)) {
+                if (target.targetAgent.pilot.isDestroyed()) {
                     Player affectedPlayer = target.targetAgent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
                     affectedPlayer.agents.remove(target.targetAgent)
                     log.info("${agent.pilot} destroyed ${target.targetAgent.pilot}")
@@ -207,14 +208,14 @@ class GameController {
         }
     }
 
-    private boolean isDestroyed(Pilot pilot) {
-        int damage = 0
-
-        for (DamageCard damageCard : pilot.damageCards) {
-            damage += damageCard.damageValue
+    private boolean facingEnemies(PlayerAgent agent, List<PlayerAgent> enemies) {
+        for (PlayerAgent enemy : enemies) {
+            if (gameField.isTargetable(agent.firingArc, enemy.position.center)) {
+                return true
+            }
         }
 
-        damage >= pilot.hullPoints
+        false
     }
 
     private class RankedManeuver {

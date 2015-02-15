@@ -6,7 +6,11 @@ import com.nsxwing.components.pilots.Pilot
  *
  */
 class BlackSquadronPilot extends TieFighter {
-    final int pilotSkill = 4
-    final int pointCost = 14
-    final boolean isUnique = false
+
+    public BlackSquadronPilot() {
+        super()
+        pilotSkill = 4
+        pointCost = 14
+        isUnique = false
+    }
 }

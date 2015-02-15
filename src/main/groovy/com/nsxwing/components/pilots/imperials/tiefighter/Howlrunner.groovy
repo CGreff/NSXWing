@@ -6,7 +6,11 @@ import com.nsxwing.components.pilots.Pilot
  *
  */
 class Howlrunner extends TieFighter {
-    final int pilotSkill = 8
-    final int pointCost = 18
-    final boolean isUnique = true
+
+    public Howlrunner() {
+        super()
+        pilotSkill = 8
+        pointCost = 18
+        isUnique = true
+    }
 }

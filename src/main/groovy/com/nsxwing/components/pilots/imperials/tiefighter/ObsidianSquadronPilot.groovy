@@ -6,7 +6,12 @@ import com.nsxwing.components.pilots.Pilot
  * Created by Christopher on 12/7/14.
  */
 class ObsidianSquadronPilot extends TieFighter {
-    final int pilotSkill = 3
-    final int pointCost = 13
-    final boolean isUnique = false
+
+    public ObsidianSquadronPilot() {
+        super()
+        pilotSkill = 3
+        pointCost = 13
+        isUnique = false
+    }
+
 }

@@ -6,7 +6,11 @@ import com.nsxwing.components.pilots.Pilot
  *
  */
 class WingedGundark extends TieFighter {
-    final int pilotSkill = 5
-    final int pointCost = 15
-    final boolean isUnique = true
+
+    public WingedGundark() {
+        super()
+        pilotSkill = 5
+        pointCost = 15
+        isUnique = true
+    }
 }

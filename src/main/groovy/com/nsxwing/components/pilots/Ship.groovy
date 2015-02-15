@@ -9,7 +9,7 @@ import groovy.transform.Immutable
  * Class describing a Ship and its contained field(s).
  */
 public class Ship {
-    Set<Maneuver> maneuvers
+    List<Maneuver> maneuvers
     Set<Action> actions
     FiringArc primaryArc
     boolean isHuge

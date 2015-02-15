@@ -4,7 +4,7 @@ package com.nsxwing.components.pilots.imperials.tieadvanced
  *
  */
 class StormSquadronPilot extends TieAdvanced {
-    final int pilotSkill = 4
-    final int pointCost = 23
-    final boolean isUnique = true
+    int pilotSkill = 4
+    int pointCost = 23
+    boolean isUnique = true
 }
