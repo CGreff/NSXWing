@@ -1,8 +1,11 @@
 package com.nsxwing
 
 import com.nsxwing.agents.Player
+import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
+import com.nsxwing.components.pilots.imperials.tiefighter.AcademyPilot
+import com.nsxwing.components.pilots.imperials.tiefighter.ObsidianSquadronPilot
 import com.nsxwing.gamestate.GameController
 import com.nsxwing.utilities.GameRecord
 import groovy.util.logging.Slf4j
@@ -25,8 +28,18 @@ class Game {
         scrub = new Player(identifier: PlayerIdentifier.SCRUB, costOfList: 100, faction: Faction.EMPIRE)
 
         //TODO: Implement list building.
-        champ.buildList()
-        scrub.buildList()
+        champ.agents = [
+                new PlayerAgent(pilot: new ObsidianSquadronPilot(), owningPlayer: PlayerIdentifier.CHAMP, pointCost: 13),
+                new PlayerAgent(pilot: new ObsidianSquadronPilot(), owningPlayer: PlayerIdentifier.CHAMP, pointCost: 13)
+        ]
+
+        scrub.agents = [
+                new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12),
+                new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12)
+        ]
+
+        champ.placeUnits()
+        scrub.placeUnits()
         controller = new GameController(champ, scrub)
     }
 
