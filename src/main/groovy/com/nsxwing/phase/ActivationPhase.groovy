@@ -30,7 +30,7 @@ class ActivationPhase {
         for(PlayerAgent agent : agents) {
             //TODO: Advanced Sensors
             maneuver(agent, chosenManeuvers.get(agent))
-            if (agent.pilot.numStressTokens == 0) {
+            if (!agent.pilot.isStressed()) {
                 performAction(agent)
             }
         }
@@ -47,6 +47,8 @@ class ActivationPhase {
 
             if (maneuver.difficulty == ManeuverDifficulty.RED) {
                 agent.pilot.numStressTokens++
+            } else if (maneuver.difficulty == ManeuverDifficulty.GREEN && agent.pilot.isStressed()) {
+                agent.pilot.numStressTokens--
             }
         }
     }

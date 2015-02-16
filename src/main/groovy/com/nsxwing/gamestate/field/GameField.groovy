@@ -42,7 +42,7 @@ public class GameField {
 
     boolean isLegalManeuver(PlayerAgent agent, Maneuver maneuver) {
         Position newPosition = maneuver.move(agent.position)
-        !isOutOfBounds(newPosition.boxPoints) && !(agent.pilot.numStressTokens > 0 && maneuver.difficulty == ManeuverDifficulty.RED)
+        !isOutOfBounds(newPosition.boxPoints)
     }
 
     boolean isLegalManeuver(Position position, Maneuver maneuver) {

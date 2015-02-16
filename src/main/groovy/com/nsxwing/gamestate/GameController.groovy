@@ -91,7 +91,7 @@ class GameController {
         if (targets) {
             strength = targets.sort { (it.targetAgent.pointCost * -1) - (0.1 * it.targetAgent.pilot.damageCards.size()) }.get(0).targetAgent.pointCost
         } else {
-            strength = 1000 - ((gameField.getDistanceBetween(position.center, enemies.get(0).position.center)) * (facingEnemies(agent, enemies) ? 0.1 : 1.0))
+            strength = (1000 - (gameField.getDistanceBetween(position.center, enemies.get(0).position.center))) * (facingEnemies(position, enemies) ? 0.1 : 1.0)
         }
 
         boolean hasNextMove = false
@@ -127,9 +127,10 @@ class GameController {
         null
     }
 
-    private boolean facingEnemies(PlayerAgent agent, List<PlayerAgent> enemies) {
+    private boolean facingEnemies(Position position, List<PlayerAgent> enemies) {
+        PlayerAgent temporaryAgent = new PlayerAgent(position: position)
         for (PlayerAgent enemy : enemies) {
-            if (gameField.isTargetable(agent.firingArc, enemy.position.center)) {
+            if (gameField.isTargetable(temporaryAgent.firingArc, enemy.position.center)) {
                 return true
             }
         }

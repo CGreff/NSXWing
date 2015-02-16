@@ -46,6 +46,10 @@ public abstract class Pilot {
         damage >= hullPoints
     }
 
+    boolean isStressed() {
+        numStressTokens > 0
+    }
+
     @Override
     String toString() {
         "${this.getClass().simpleName}:(${hullPoints}-${damageCards.size()}, ${shieldPoints})"
