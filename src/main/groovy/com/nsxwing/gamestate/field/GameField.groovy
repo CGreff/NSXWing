@@ -6,6 +6,7 @@ import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.gamestate.combat.FiringLine
 import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.movement.Maneuver
+import com.nsxwing.movement.ManeuverDifficulty
 
 /**
  * Class describing the playing field. (3' x 3')
@@ -37,6 +38,16 @@ public class GameField {
 
     double getTargetPriority(PlayerAgent agent) {
         agent.pointCost / ((agent.pilot.hullPoints + agent.pilot.shieldPoints) * agent.pilot.agility)
+    }
+
+    boolean isLegalManeuver(PlayerAgent agent, Maneuver maneuver) {
+        Position newPosition = maneuver.move(agent.position)
+        !isOutOfBounds(newPosition.boxPoints) && !(agent.pilot.numStressTokens > 0 && maneuver.difficulty == ManeuverDifficulty.RED)
+    }
+
+    boolean isLegalManeuver(Position position, Maneuver maneuver) {
+        Position newPosition = maneuver.move(position)
+        !isOutOfBounds(newPosition.boxPoints)
     }
 
     boolean isOutOfBounds(List<Coordinate> boxPoints) {

@@ -16,6 +16,8 @@ import com.nsxwing.gamestate.field.GameField
 import com.nsxwing.gamestate.field.Position
 import com.nsxwing.movement.Maneuver
 import com.nsxwing.movement.ManeuverDifficulty
+import com.nsxwing.phase.ActivationPhase
+import com.nsxwing.phase.CombatPhase
 import groovy.util.logging.Slf4j
 
 /**
@@ -38,21 +40,25 @@ class GameController {
     final Player champ
     final Player scrub
     final GameField gameField
+    private CombatPhase combatPhase
+    private ActivationPhase activationPhase
 
     GameController(Player champ, Player scrub) {
         this.champ = champ
         this.scrub = scrub
         PLAYER_WITH_INITIATIVE = determineInitiative()
         gameField = new GameField()
+        combatPhase = new CombatPhase(champ, scrub, gameField)
+        activationPhase = new ActivationPhase(champ, scrub, gameField)
     }
 
     Player doTurn() {
         log.info("Planning turn")
         Map<PlayerAgent, Maneuver> chosenManeuvers = planTurn()
         log.info("Begin Activation Phase")
-        doActivationPhase(chosenManeuvers)
+        activationPhase.doPhase(getCombinedAgentList(ACTIVATION_COMPARATOR), chosenManeuvers)
         log.info("Begin Combat Phase")
-        doCombatPhase()
+        combatPhase.doPhase(getCombinedAgentList(COMBAT_COMPARATOR))
         checkForWinner()
     }
 
@@ -62,7 +68,7 @@ class GameController {
         for (PlayerAgent agent : getCombinedAgentList { it }) {
             bestManeuver = null
             for (Maneuver maneuver : agent.pilot.ship.maneuvers) {
-                if (isLegalManeuver(agent, maneuver)) {
+                if (gameField.isLegalManeuver(agent, maneuver)) {
                     double strength = getManeuverStrength(agent, maneuver)
                     if (!bestManeuver) {
                         bestManeuver = new RankedManeuver(maneuver: maneuver, strength: strength)
@@ -77,7 +83,7 @@ class GameController {
     }
 
     double getManeuverStrength(PlayerAgent agent, Maneuver maneuver) {
-        double strength = 1.0
+        double strength
         Position position = maneuver.move(agent.position)
         List<PlayerAgent> enemies = agent.owningPlayer == PlayerIdentifier.CHAMP ? champ.agents.sort { it.pointCost * -1 } : scrub.agents.sort { it.pointCost * -1 }
         List<Target> targets = gameField.getTargetsFor(champ, scrub, agent)
@@ -90,7 +96,7 @@ class GameController {
 
         boolean hasNextMove = false
         for (Maneuver nextManeuver : agent.pilot.ship.maneuvers) {
-            if (isLegalManeuver(position, nextManeuver)) {
+            if (gameField.isLegalManeuver(position, nextManeuver)) {
                 hasNextMove = true
                 break
             }
@@ -99,47 +105,10 @@ class GameController {
         hasNextMove ? strength : 0
     }
 
-    void doActivationPhase(Map<PlayerAgent, Maneuver> chosenManeuvers) {
-        for(PlayerAgent agent : getCombinedAgentList(ACTIVATION_COMPARATOR)) {
-            //TODO: Advanced Sensors
-            maneuver(agent, chosenManeuvers.get(agent))
-            if (agent.pilot.numStressTokens == 0) {
-                performAction(agent)
-            }
-        }
-    }
-
-    void doCombatPhase() {
-        for(PlayerAgent agent : getCombinedAgentList(COMBAT_COMPARATOR)) {
-            List<Target> targets = gameField.getTargetsFor(champ, scrub, agent).sort { it.priority }
-            Target target = targets ? targets.get(0) : null
-            if (target) {
-                log.info("${agent} is attacking ${target}")
-                doCombat(agent, target)
-
-                if (target.targetAgent.pilot.isDestroyed()) {
-                    Player affectedPlayer = target.targetAgent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
-                    affectedPlayer.agents.remove(target.targetAgent)
-                    log.info("${agent.pilot} destroyed ${target.targetAgent.pilot}")
-                }
-            }
-        }
-    }
-
     List<PlayerAgent> getCombinedAgentList(Closure comparator) {
         List<PlayerAgent> combinedList = new ArrayList(champ.agents)
         combinedList.addAll(scrub.agents)
         combinedList.sort(comparator)
-    }
-
-    boolean isLegalManeuver(PlayerAgent agent, Maneuver maneuver) {
-        Position newPosition = maneuver.move(agent.position)
-        !gameField.isOutOfBounds(newPosition.boxPoints) && !(agent.pilot.numStressTokens > 0 && maneuver.difficulty == ManeuverDifficulty.RED)
-    }
-
-    boolean isLegalManeuver(Position position, Maneuver maneuver) {
-        Position newPosition = maneuver.move(position)
-        !gameField.isOutOfBounds(newPosition.boxPoints)
     }
 
     private PlayerIdentifier determineInitiative() {
@@ -147,53 +116,15 @@ class GameController {
     }
 
     private Player checkForWinner() {
-        if (!champ.agents) {
-            return scrub
-        }
-
         if (!scrub.agents) {
             return champ
         }
 
+        if (!champ.agents) {
+            return scrub
+        }
+
         null
-    }
-
-    private void maneuver(PlayerAgent agent, Maneuver maneuver) {
-        if (!maneuver) {
-            log.info("${agent} flew off the board.")
-            Player owningPlayer = agent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
-            owningPlayer.agents.remove(agent)
-        } else {
-            log.info("${agent} is performing ${maneuver}")
-            agent.position = maneuver.move(agent.position)
-
-            if (maneuver.difficulty == ManeuverDifficulty.RED) {
-                agent.pilot.numStressTokens++
-            }
-        }
-    }
-
-    //TODO: Implement picking and performing actions.
-    private void performAction(PlayerAgent agent) {
-        for (Action action : agent.pilot.ship.actions.sort { it.actionPriority }) {
-            if (action instanceof Focus) {
-                action.execute(agent)
-            }
-        }
-    }
-
-    //TODO: Fix this.
-    private void doCombat(PlayerAgent agent, Target target) {
-        List<AttackDie> attackDice = AttackDie.getDice(target.range == 1 ? agent.pilot.attack + 1 : agent.pilot.attack)
-        attackDice.removeAll { it.result == DiceResult.NOTHING || it.result == DiceResult.FOCUS }
-        List<EvadeDie> evadeDice  = EvadeDie.getDice(target.range > 2 ? target.targetAgent.pilot.agility + 1 : target.targetAgent.pilot.agility)
-        evadeDice.removeAll { it.result == DiceResult.NOTHING || it.result == DiceResult.FOCUS }
-
-        for (int i = 0; i < attackDice.size() - evadeDice.size(); i++) {
-            //TODO: Crits
-            target.targetAgent.pilot.sufferDamage(false)
-            log.info("${target.targetAgent} suffered a damage!")
-        }
     }
 
     private boolean facingEnemies(PlayerAgent agent, List<PlayerAgent> enemies) {
