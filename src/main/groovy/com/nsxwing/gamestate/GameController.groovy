@@ -2,27 +2,15 @@ package com.nsxwing.gamestate
 
 import com.nsxwing.agents.Player
 import com.nsxwing.agents.PlayerAgent
-import com.nsxwing.components.actions.Action
-import com.nsxwing.components.actions.Focus
 import com.nsxwing.components.meta.PlayerIdentifier
-import com.nsxwing.components.meta.damage.DamageCard
-import com.nsxwing.components.meta.dice.AttackDie
-import com.nsxwing.components.meta.dice.DiceResult
-import com.nsxwing.components.meta.dice.EvadeDie
-import com.nsxwing.components.pilots.Pilot
 import com.nsxwing.gamestate.combat.Target
-import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.GameField
 import com.nsxwing.gamestate.field.Position
 import com.nsxwing.movement.Maneuver
-import com.nsxwing.movement.ManeuverDifficulty
 import com.nsxwing.phase.ActivationPhase
 import com.nsxwing.phase.CombatPhase
 import groovy.util.logging.Slf4j
 
-/**
- *
- */
 @Slf4j
 class GameController {
 

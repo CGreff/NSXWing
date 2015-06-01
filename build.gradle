@@ -1,10 +1,15 @@
 apply plugin: 'groovy'
+apply plugin: 'application'
+
+mainClassName = 'com.nsxwing.Main'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.3.6'
+    compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
     testCompile 'junit:junit:4.11'
 }

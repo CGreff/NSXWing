@@ -12,9 +12,6 @@ import com.nsxwing.utilities.PilotUtility
 import org.junit.Before
 import org.junit.Test
 
-/**
- *
- */
 class GameControllerTest {
     Player champ
     Player scrub

@@ -10,9 +10,6 @@ import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.gamestate.field.GameField
 import groovy.util.logging.Slf4j
 
-/**
- *
- */
 @Slf4j
 class CombatPhase {
 

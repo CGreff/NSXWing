@@ -10,9 +10,6 @@ import com.nsxwing.movement.Maneuver
 import com.nsxwing.movement.ManeuverDifficulty
 import groovy.util.logging.Slf4j
 
-/**
- *
- */
 @Slf4j
 class ActivationPhase {
 
