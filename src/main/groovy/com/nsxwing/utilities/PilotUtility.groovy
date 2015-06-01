@@ -9,7 +9,7 @@ import static com.nsxwing.components.equipment.EquipmentType.*
 /**
  * Utility class that creates Pilots from a CSV file.
  */
-public class PilotUtility {
+class PilotUtility {
     private static final Map<String, Pilot> NAME_TO_PILOT_MAP
 
     static {

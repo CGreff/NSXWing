@@ -4,6 +4,13 @@ import com.nsxwing.agents.Player
 import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
+import com.nsxwing.components.pilots.imperials.tieadvanced.DarthVader
+import com.nsxwing.components.pilots.imperials.tieadvanced.MaarekStele
+import com.nsxwing.components.pilots.imperials.tiefighter.AcademyPilot
+import com.nsxwing.components.pilots.imperials.tiefighter.Backstabber
+import com.nsxwing.components.pilots.imperials.tiefighter.DarkCurse
+import com.nsxwing.components.pilots.imperials.tiefighter.Howlrunner
+import com.nsxwing.components.pilots.imperials.tiefighter.ObsidianSquadronPilot
 import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.GameField
@@ -21,18 +28,18 @@ class GameControllerTest {
     @Before
     void setUp() {
         champ = new Player(identifier: PlayerIdentifier.CHAMP, costOfList: 85, faction: Faction.EMPIRE, agents: [
-                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 65, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 200, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Backstabber'), position: new Position(center: new Coordinate(x: 245, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Dark Curse'), position: new Position(center: new Coordinate(x: 290, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Maarek Stele'), position: new Position(center: new Coordinate(x: 345, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP)
+                new PlayerAgent(pilot: new AcademyPilot(), position: new Position(center: new Coordinate(x: 65, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP),
+                new PlayerAgent(pilot: new ObsidianSquadronPilot(), position: new Position(center: new Coordinate(x: 200, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP),
+                new PlayerAgent(pilot: new Backstabber(), position: new Position(center: new Coordinate(x: 245, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP),
+                new PlayerAgent(pilot: new DarkCurse(), position: new Position(center: new Coordinate(x: 290, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP),
+                new PlayerAgent(pilot: new MaarekStele(), position: new Position(center: new Coordinate(x: 345, y: 20), heading: 0), owningPlayer: PlayerIdentifier.CHAMP)
         ])
         scrub = new Player(identifier: PlayerIdentifier.SCRUB, costOfList: 79, faction: Faction.EMPIRE, agents: [
-                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 20, y: 280), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Academy Pilot'), position: new Position(center: new Coordinate(x: 155, y: 280), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Obsidian Squadron Pilot'), position: new Position(center: new Coordinate(x: 200, y: 300), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Howlrunner'), position: new Position(center: new Coordinate(x: 245, y: 280), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB),
-                new PlayerAgent(pilot: PilotUtility.getPilot('Darth Vader'), position: new Position(center: new Coordinate(x: 345, y: 70), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB)
+                new PlayerAgent(pilot: new AcademyPilot(), position: new Position(center: new Coordinate(x: 20, y: 280), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB),
+                new PlayerAgent(pilot: new AcademyPilot(), position: new Position(center: new Coordinate(x: 155, y: 280), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB),
+                new PlayerAgent(pilot: new ObsidianSquadronPilot(), position: new Position(center: new Coordinate(x: 200, y: 300), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB),
+                new PlayerAgent(pilot: new Howlrunner(), position: new Position(center: new Coordinate(x: 245, y: 280), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB),
+                new PlayerAgent(pilot: new DarthVader(), position: new Position(center: new Coordinate(x: 345, y: 70), heading: Math.PI), owningPlayer: PlayerIdentifier.SCRUB)
         ])
 
         field = new GameField()
