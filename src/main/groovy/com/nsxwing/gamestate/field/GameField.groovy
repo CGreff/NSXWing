@@ -6,7 +6,6 @@ import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.gamestate.combat.FiringLine
 import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.movement.Maneuver
-import com.nsxwing.movement.ManeuverDifficulty
 
 /**
  * Class describing the playing field. (3' x 3')

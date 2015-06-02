@@ -1,10 +1,6 @@
 package com.nsxwing.utilities
 
 import com.nsxwing.components.pilots.Pilot
-import com.nsxwing.components.pilots.Ship
-import com.nsxwing.components.equipment.EquipmentSlot
-import com.nsxwing.components.equipment.EquipmentType
-import static com.nsxwing.components.equipment.EquipmentType.*
 
 /**
  * Utility class that creates Pilots from a CSV file.

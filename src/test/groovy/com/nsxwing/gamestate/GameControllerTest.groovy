@@ -15,7 +15,6 @@ import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.GameField
 import com.nsxwing.gamestate.field.Position
-import com.nsxwing.utilities.PilotUtility
 import org.junit.Before
 import org.junit.Test
 

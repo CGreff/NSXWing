@@ -1,6 +1,5 @@
 package com.nsxwing.utilities
 
-import com.nsxwing.components.pilots.Ship
 import com.nsxwing.components.actions.Action
 import com.nsxwing.components.actions.BarrelRoll
 import com.nsxwing.components.actions.Boost
@@ -8,15 +7,15 @@ import com.nsxwing.components.actions.Cloak
 import com.nsxwing.components.actions.Evade
 import com.nsxwing.components.actions.Focus
 import com.nsxwing.components.actions.TargetLock
+import com.nsxwing.components.pilots.Ship
 import com.nsxwing.movement.BankTurn
 import com.nsxwing.movement.Forward
 import com.nsxwing.movement.Koiogran
 import com.nsxwing.movement.Maneuver
 import com.nsxwing.movement.ManeuverDifficulty
-import static com.nsxwing.movement.ManeuverDifficulty.GREEN
-import static com.nsxwing.movement.ManeuverDifficulty.WHITE
-import static com.nsxwing.movement.ManeuverDifficulty.RED
 import com.nsxwing.movement.Turn
+
+import static com.nsxwing.movement.ManeuverDifficulty.*
 
 /**
  * Utility class to build a list of ships from a CSV file and provide a ship name to Ship factory method.

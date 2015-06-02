@@ -1,11 +1,10 @@
 package com.nsxwing.agents
 
-import com.nsxwing.components.meta.PlayerIdentifier;
+import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.components.pilots.Pilot
 import com.nsxwing.gamestate.combat.FiringLine
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.Position
-import com.nsxwing.movement.Maneuver
 
 /**
  * An agent in charge of a single ship, and maintains its pilot, ship, equipment, etc. as well as

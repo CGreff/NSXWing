@@ -2,11 +2,8 @@ package com.nsxwing.agents
 
 import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
-import com.nsxwing.components.pilots.imperials.tiefighter.AcademyPilot
-import com.nsxwing.components.pilots.imperials.tiefighter.ObsidianSquadronPilot
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.Position
-import com.nsxwing.utilities.PilotUtility
 
 /**
  * Object in charge of the individual Player Agents. Has a Faction and a point total.

@@ -1,11 +1,11 @@
 package com.nsxwing.components.pilots.imperials.tiefighter
 
-import com.nsxwing.components.pilots.Ship
 import com.nsxwing.components.actions.Action
 import com.nsxwing.components.actions.BarrelRoll
 import com.nsxwing.components.actions.Evade
 import com.nsxwing.components.actions.Focus
 import com.nsxwing.components.pilots.Pilot
+import com.nsxwing.components.pilots.Ship
 import com.nsxwing.gamestate.combat.FiringArc
 import com.nsxwing.movement.BankTurn
 import com.nsxwing.movement.Direction

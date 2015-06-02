@@ -1,7 +1,4 @@
 package com.nsxwing.components.meta.damage
-
-import com.nsxwing.components.pilots.Pilot
-
 /**
  *
  */

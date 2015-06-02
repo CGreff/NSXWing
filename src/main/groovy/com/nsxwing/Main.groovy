@@ -19,8 +19,6 @@ public class Main {
 
         logStats(gameStats.findAll { it.winner == PlayerIdentifier.CHAMP }, numGames)
         logStats(gameStats.findAll { it.winner == PlayerIdentifier.SCRUB }, numGames)
-
-
     }
 
     private static void logStats(List<GameRecord> records, int numGames) {
