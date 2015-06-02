@@ -36,16 +36,6 @@ public abstract class Pilot {
         }
     }
 
-    boolean isDestroyed() {
-        int damage = 0
-
-        for (DamageCard damageCard : damageCards) {
-            damage += damageCard.damageValue
-        }
-
-        damage >= hullPoints
-    }
-
     boolean isStressed() {
         numStressTokens > 0
     }

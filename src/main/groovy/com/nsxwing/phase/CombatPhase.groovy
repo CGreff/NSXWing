@@ -3,9 +3,12 @@ package com.nsxwing.phase
 import com.nsxwing.agents.Player
 import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.meta.PlayerIdentifier
+import com.nsxwing.components.meta.damage.DamageCard
+import com.nsxwing.components.meta.damage.DamageDeck
 import com.nsxwing.components.meta.dice.AttackDie
 import com.nsxwing.components.meta.dice.DiceResult
 import com.nsxwing.components.meta.dice.EvadeDie
+import com.nsxwing.components.pilots.Pilot
 import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.gamestate.field.GameField
 import groovy.util.logging.Slf4j
@@ -32,13 +35,23 @@ class CombatPhase {
                 log.info("${agent} is attacking ${target}")
                 doCombat(agent, target)
 
-                if (target.targetAgent.pilot.isDestroyed()) {
+                if (isDestroyed(target.targetAgent.pilot)) {
                     Player affectedPlayer = target.targetAgent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
                     affectedPlayer.agents.remove(target.targetAgent)
                     log.info("${agent.pilot} destroyed ${target.targetAgent.pilot}")
                 }
             }
         }
+    }
+
+    boolean isDestroyed(Pilot pilot) {
+        int damage = 0
+
+        for (DamageCard damageCard : pilot.damageCards) {
+            damage += damageCard.damageValue
+        }
+
+        damage >= pilot.hullPoints
     }
 
     //TODO: Fix this.

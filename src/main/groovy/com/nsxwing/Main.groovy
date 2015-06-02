@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Game game
         List<GameRecord> gameStats = []
-        int numGames = 50
+        int numGames = 1
 
         for (int i = 0; i < numGames; i++) {
             game = new Game()
@@ -33,7 +33,8 @@ public class Main {
         avgPoints = avgPoints / records.size()
         avgTurns = avgTurns / records.size()
         double winRate = records.size() / numGames
-
-        log.info("${records.get(0).winner} had a win rate of ${winRate} and won with an average of ${avgPoints} points left in ${avgTurns} turns.")
+        if (records.size() > 0) {
+            log.info("${records.get(0).winner} had a win rate of ${winRate} and won with an average of ${avgPoints} points left in ${avgTurns} turns.")
+        }
     }
 }
