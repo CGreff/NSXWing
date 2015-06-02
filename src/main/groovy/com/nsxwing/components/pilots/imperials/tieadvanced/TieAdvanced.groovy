@@ -16,9 +16,6 @@ import com.nsxwing.movement.Maneuver
 import com.nsxwing.movement.ManeuverDifficulty
 import com.nsxwing.movement.Turn
 
-/**
- *
- */
 class TieAdvanced extends Pilot {
     static final List<Maneuver> MANEUVERS = [
             new Forward(2, ManeuverDifficulty.GREEN),

@@ -1,16 +1,7 @@
 package com.nsxwing.components.pilots.imperials.tiefighter
 
-import com.nsxwing.components.pilots.Pilot
-
-/**
- *
- */
 class BlackSquadronPilot extends TieFighter {
-
-    public BlackSquadronPilot() {
-        super()
-        pilotSkill = 4
-        pointCost = 14
-        isUnique = false
-    }
+    int pilotSkill = 4
+    int pointCost = 14
+    boolean isUnique = false
 }

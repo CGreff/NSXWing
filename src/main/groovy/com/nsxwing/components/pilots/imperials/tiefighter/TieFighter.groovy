@@ -15,11 +15,8 @@ import com.nsxwing.movement.Maneuver
 import com.nsxwing.movement.ManeuverDifficulty
 import com.nsxwing.movement.Turn
 
-/**
- *
- */
 class TieFighter extends Pilot {
-    private final List<Maneuver> MANEUVERS = [
+    static final List<Maneuver> MANEUVERS = [
             new Forward(2, ManeuverDifficulty.GREEN),
             new Forward(3, ManeuverDifficulty.GREEN),
             new Forward(4, ManeuverDifficulty.WHITE),
@@ -38,17 +35,15 @@ class TieFighter extends Pilot {
             new Turn(3, ManeuverDifficulty.WHITE, Direction.RIGHT)
     ]
 
-    private final Set<Action> ACTIONS = [
+    static final Set<Action> ACTIONS = [
             new Focus(),
             new Evade(),
             new BarrelRoll()
     ]
 
-    public TieFighter() {
-        ship = new Ship(maneuvers: MANEUVERS, actions: ACTIONS, isHuge: false, primaryArc: FiringArc.NORMAL)
-        attack = 2
-        agility = 3
-        shieldPoints = 0
-        hullPoints = 3
-    }
+    Ship ship = new Ship(maneuvers: MANEUVERS, actions: ACTIONS, isHuge: false, primaryArc: FiringArc.NORMAL)
+    int attack = 2
+    int agility = 3
+    int shieldPoints = 0
+    int hullPoints = 3
 }
