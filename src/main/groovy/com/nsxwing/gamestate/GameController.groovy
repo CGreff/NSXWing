@@ -9,6 +9,7 @@ import com.nsxwing.gamestate.field.Position
 import com.nsxwing.movement.Maneuver
 import com.nsxwing.phase.ActivationPhase
 import com.nsxwing.phase.CombatPhase
+import com.nsxwing.phase.PlanningPhase
 import groovy.util.logging.Slf4j
 
 @Slf4j
@@ -28,6 +29,7 @@ class GameController {
     final Player champ
     final Player scrub
     final GameField gameField
+    private PlanningPhase planningPhase
     private CombatPhase combatPhase
     private ActivationPhase activationPhase
 
@@ -36,61 +38,19 @@ class GameController {
         this.scrub = scrub
         PLAYER_WITH_INITIATIVE = determineInitiative()
         gameField = new GameField()
+        planningPhase = new PlanningPhase(champ, scrub, gameField)
         combatPhase = new CombatPhase(champ, scrub, gameField)
         activationPhase = new ActivationPhase(champ, scrub, gameField)
     }
 
     Player doTurn() {
         log.info("Planning turn")
-        Map<PlayerAgent, Maneuver> chosenManeuvers = planTurn()
+        Map<PlayerAgent, Maneuver> chosenManeuvers = planningPhase.doPhase(getCombinedAgentList { it })
         log.info("Begin Activation Phase")
         activationPhase.doPhase(getCombinedAgentList(ACTIVATION_COMPARATOR), chosenManeuvers)
         log.info("Begin Combat Phase")
         combatPhase.doPhase(getCombinedAgentList(COMBAT_COMPARATOR))
         checkForWinner()
-    }
-
-    Map<PlayerAgent, Maneuver> planTurn() {
-        Map<PlayerAgent, Maneuver> chosenManeuvers = [:]
-        RankedManeuver bestManeuver
-        for (PlayerAgent agent : getCombinedAgentList { it }) {
-            bestManeuver = null
-            for (Maneuver maneuver : agent.pilot.ship.maneuvers) {
-                if (gameField.isLegalManeuver(agent, maneuver)) {
-                    double strength = getManeuverStrength(agent, maneuver)
-                    if (!bestManeuver) {
-                        bestManeuver = new RankedManeuver(maneuver: maneuver, strength: strength)
-                    } else if (strength > bestManeuver.strength) {
-                        bestManeuver = new RankedManeuver(maneuver: maneuver, strength: strength)
-                    }
-                }
-            }
-            chosenManeuvers.put(agent, bestManeuver?.maneuver)
-        }
-        chosenManeuvers
-    }
-
-    double getManeuverStrength(PlayerAgent agent, Maneuver maneuver) {
-        double strength
-        Position position = maneuver.move(agent.position)
-        List<PlayerAgent> enemies = agent.owningPlayer == PlayerIdentifier.CHAMP ? champ.agents.sort { it.pointCost * -1 } : scrub.agents.sort { it.pointCost * -1 }
-        List<Target> targets = gameField.getTargetsFor(champ, scrub, agent)
-
-        if (targets) {
-            strength = targets.sort { (it.targetAgent.pointCost * -1) - (0.1 * it.targetAgent.pilot.damageCards.size()) }.get(0).targetAgent.pointCost
-        } else {
-            strength = (1000 - (gameField.getDistanceBetween(position.center, enemies.get(0).position.center))) * (facingEnemies(position, enemies) ? 0.1 : 1.0)
-        }
-
-        boolean hasNextMove = false
-        for (Maneuver nextManeuver : agent.pilot.ship.maneuvers) {
-            if (gameField.isLegalManeuver(position, nextManeuver)) {
-                hasNextMove = true
-                break
-            }
-        }
-
-        hasNextMove ? strength : 0
     }
 
     List<PlayerAgent> getCombinedAgentList(Closure comparator) {
@@ -113,21 +73,5 @@ class GameController {
         }
 
         null
-    }
-
-    private boolean facingEnemies(Position position, List<PlayerAgent> enemies) {
-        PlayerAgent temporaryAgent = new PlayerAgent(position: position)
-        for (PlayerAgent enemy : enemies) {
-            if (gameField.isTargetable(temporaryAgent.firingArc, enemy.position.center)) {
-                return true
-            }
-        }
-
-        false
-    }
-
-    private class RankedManeuver {
-        Maneuver maneuver
-        double strength
     }
 }
