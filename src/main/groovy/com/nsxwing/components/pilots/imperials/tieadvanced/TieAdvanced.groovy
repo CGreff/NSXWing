@@ -42,9 +42,11 @@ class TieAdvanced extends Pilot {
             new TargetLock()
     ]
 
-    Ship ship = new Ship(maneuvers: MANEUVERS, actions: ACTIONS, isHuge: false, primaryArc: FiringArc.NORMAL)
-    int attack = 2
-    int agility = 3
-    int shieldPoints = 2
-    int hullPoints = 3
+    public TieAdvanced() {
+        ship = new Ship(maneuvers: MANEUVERS, actions: ACTIONS, isHuge: false, primaryArc: FiringArc.NORMAL)
+        attack = 2
+        agility = 3
+        shieldPoints = 2
+        hullPoints = 3
+    }
 }

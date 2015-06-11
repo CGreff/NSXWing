@@ -27,25 +27,31 @@ class CombatPhase {
 
 
     void doPhase(List<PlayerAgent> agents) {
+        Set<PlayerAgent> hasAttacked = [] as Set
         int pilotSkill
         for(PlayerAgent agent : agents) {
-            pilotSkill = agent.pilot.pilotSkill;
-            List<Target> targets = gameField.getTargetsFor(champ, scrub, agent).sort { it.priority }
-            Target target = targets ? targets.get(0) : null
-            if (target) {
-                log.info("${agent} is attacking ${target}")
-                doCombat(agent, target)
+            if (!hasAttacked.contains(agent)) {
+                pilotSkill = agent.pilot.pilotSkill;
+                List<Target> targets = gameField.getTargetsFor(champ, scrub, agent).sort { it.priority }
+                Target target = targets ? targets.get(0) : null
 
-                if (isDestroyed(target.targetAgent.pilot)) {
-                    if (target.targetAgent.pilot.pilotSkill != pilotSkill) {
-                        agents.remove(target.targetAgent)
+                if (target) {
+                    log.info("${agent} is attacking ${target}")
+                    doCombat(agent, target)
+
+                    if (isDestroyed(target.targetAgent.pilot)) {
+                        if (target.targetAgent.pilot.pilotSkill != pilotSkill) {
+                            hasAttacked.add(target.targetAgent)
+                        }
+
+                        Player affectedPlayer = target.targetAgent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
+                        affectedPlayer.agents.remove(target.targetAgent)
+
+                        log.info("${agent.pilot} destroyed ${target.targetAgent.pilot}")
                     }
-
-                    Player affectedPlayer = target.targetAgent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
-                    affectedPlayer.agents.remove(target.targetAgent)
-
-                    log.info("${agent.pilot} destroyed ${target.targetAgent.pilot}")
                 }
+
+                hasAttacked.add(agent)
             }
         }
     }

@@ -41,9 +41,11 @@ class TieFighter extends Pilot {
             new BarrelRoll()
     ]
 
-    Ship ship = new Ship(maneuvers: MANEUVERS, actions: ACTIONS, isHuge: false, primaryArc: FiringArc.NORMAL)
-    int attack = 2
-    int agility = 3
-    int shieldPoints = 0
-    int hullPoints = 3
+    public TieFighter() {
+        ship = new Ship(maneuvers: MANEUVERS, actions: ACTIONS, isHuge: false, primaryArc: FiringArc.NORMAL)
+        attack = 2
+        agility = 3
+        shieldPoints = 0
+        hullPoints = 3
+    }
 }
