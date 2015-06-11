@@ -1,8 +1,5 @@
 package com.nsxwing.components.pilots.imperials.tieadvanced
 
-/**
- *
- */
 class TempestSquadronPilot extends TieAdvanced {
 
     public TempestSquadronPilot() {

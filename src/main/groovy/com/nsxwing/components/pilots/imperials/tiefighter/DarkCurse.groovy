@@ -1,7 +1,11 @@
 package com.nsxwing.components.pilots.imperials.tiefighter
 
 class DarkCurse extends TieFighter {
-    int pilotSkill = 6
-    int pointCost = 16
-    boolean isUnique = true
+
+    public DarkCurse() {
+        super()
+        pilotSkill = 6
+        pointCost = 16
+        isUnique = true
+    }
 }
