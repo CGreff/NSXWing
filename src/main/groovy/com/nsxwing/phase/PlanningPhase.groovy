@@ -6,12 +6,11 @@ import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.gamestate.field.GameField
 import com.nsxwing.gamestate.field.Position
 import com.nsxwing.movement.Maneuver
+import groovy.util.logging.Slf4j
 
+@Slf4j
 class PlanningPhase {
 
-    static final double STRENGTH_NO_TARGETS = 1000
-    static final double STRENGTH_MINIFIER = 0.1
-    static final double STRENGTH_MAXIMIZER = 1.0
 
     final Player champ
     final Player scrub
@@ -31,10 +30,10 @@ class PlanningPhase {
             bestManeuver = null
             for (Maneuver maneuver : agent.pilot.ship.maneuvers) {
                 if (gameField.isLegalManeuver(agent, maneuver)) {
-                    double strength = getManeuverStrength(agent, maneuver)
+                    ManeuverStrength strength = getManeuverStrength(agent, maneuver)
                     if (!bestManeuver) {
                         bestManeuver = new RankedManeuver(maneuver: maneuver, strength: strength)
-                    } else if (strength > bestManeuver.strength) {
+                    } else if (isBetterManeuver(strength, bestManeuver)) {
                         bestManeuver = new RankedManeuver(maneuver: maneuver, strength: strength)
                     }
                 }
@@ -44,9 +43,9 @@ class PlanningPhase {
         chosenManeuvers
     }
 
-    double getManeuverStrength(PlayerAgent agent, Maneuver maneuver) {
+    ManeuverStrength getManeuverStrength(PlayerAgent agent, Maneuver maneuver) {
         Position position = maneuver.move(agent.position)
-        List<PlayerAgent> enemies = agent.owningPlayer == PlayerIdentifier.CHAMP ? champ.agents.sort { it.pointCost * -1 } : scrub.agents.sort { it.pointCost * -1 }
+        List<PlayerAgent> enemies = agent.owningPlayer == PlayerIdentifier.SCRUB ? champ.agents.sort { it.pointCost * -1 } : scrub.agents.sort { it.pointCost * -1 }
         List<Position> potentialEnemyPositions = []
 
         for (PlayerAgent enemy : enemies) {
@@ -54,6 +53,7 @@ class PlanningPhase {
         }
 
         int numTargets = gameField.getTargetCoverageFor(agent, potentialEnemyPositions)
+        double distanceToEnemies = gameField.getDistanceBetween(agent.position.center, enemies.get(0).position.center) / GameField.X_SIZE
 
         boolean hasNextMove = false
         for (Maneuver nextManeuver : agent.pilot.ship.maneuvers) {
@@ -63,7 +63,7 @@ class PlanningPhase {
             }
         }
 
-        hasNextMove ? numTargets : 0
+        hasNextMove ? new ManeuverStrength(numTargets: numTargets, distanceToEnemies: distanceToEnemies) : new ManeuverStrength(numTargets: -1)
     }
 
     private List<Position> getPositionsFor(PlayerAgent agent) {
@@ -75,8 +75,18 @@ class PlanningPhase {
         positions
     }
 
+    private boolean isBetterManeuver(ManeuverStrength strength, RankedManeuver bestManeuver) {
+        strength.numTargets > bestManeuver.strength.numTargets ||
+                (strength.numTargets == bestManeuver.strength.numTargets && strength.distanceToEnemies < bestManeuver.strength.distanceToEnemies)
+    }
+
     private class RankedManeuver {
         Maneuver maneuver
-        double strength
+        ManeuverStrength strength
+    }
+
+    private class ManeuverStrength {
+        int numTargets
+        double distanceToEnemies
     }
 }

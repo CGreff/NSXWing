@@ -36,6 +36,8 @@ class Game {
 
         scrub.agents = [
                 new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12),
+                new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12),
+                new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12),
                 new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12)
         ]
 
