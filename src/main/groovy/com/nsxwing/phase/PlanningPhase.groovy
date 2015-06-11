@@ -66,17 +66,6 @@ class PlanningPhase {
         hasNextMove ? numTargets : 0
     }
 
-    private boolean facingEnemies(Position position, List<PlayerAgent> enemies) {
-        PlayerAgent temporaryAgent = new PlayerAgent(position: position)
-        for (PlayerAgent enemy : enemies) {
-            if (gameField.isTargetable(temporaryAgent.firingArc, enemy.position.center)) {
-                return true
-            }
-        }
-
-        false
-    }
-
     private List<Position> getPositionsFor(PlayerAgent agent) {
         List<Position> positions = []
         for (Maneuver maneuver : agent.pilot.ship.maneuvers) {
