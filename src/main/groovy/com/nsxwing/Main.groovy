@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Game game
         List<GameRecord> gameStats = []
-        int numGames = 100
+        int numGames = 20
 
         for (int i = 0; i < numGames; i++) {
             game = new Game()

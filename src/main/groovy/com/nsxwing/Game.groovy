@@ -4,6 +4,7 @@ import com.nsxwing.agents.Player
 import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
+import com.nsxwing.components.pilots.imperials.tieadvanced.TempestSquadronPilot
 import com.nsxwing.components.pilots.imperials.tiefighter.AcademyPilot
 import com.nsxwing.components.pilots.imperials.tiefighter.ObsidianSquadronPilot
 import com.nsxwing.gamestate.GameController
@@ -29,8 +30,8 @@ class Game {
 
         //TODO: Implement list building.
         champ.agents = [
-                new PlayerAgent(pilot: new ObsidianSquadronPilot(), owningPlayer: PlayerIdentifier.CHAMP, pointCost: 13),
-                new PlayerAgent(pilot: new ObsidianSquadronPilot(), owningPlayer: PlayerIdentifier.CHAMP, pointCost: 13)
+                new PlayerAgent(pilot: new TempestSquadronPilot(), owningPlayer: PlayerIdentifier.CHAMP, pointCost: 21),
+                new PlayerAgent(pilot: new TempestSquadronPilot(), owningPlayer: PlayerIdentifier.CHAMP, pointCost: 21)
         ]
 
         scrub.agents = [

@@ -27,7 +27,9 @@ class CombatPhase {
 
 
     void doPhase(List<PlayerAgent> agents) {
+        int pilotSkill
         for(PlayerAgent agent : agents) {
+            pilotSkill = agent.pilot.pilotSkill;
             List<Target> targets = gameField.getTargetsFor(champ, scrub, agent).sort { it.priority }
             Target target = targets ? targets.get(0) : null
             if (target) {
@@ -35,8 +37,13 @@ class CombatPhase {
                 doCombat(agent, target)
 
                 if (isDestroyed(target.targetAgent.pilot)) {
+                    if (target.targetAgent.pilot.pilotSkill != pilotSkill) {
+                        agents.remove(target.targetAgent)
+                    }
+
                     Player affectedPlayer = target.targetAgent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
                     affectedPlayer.agents.remove(target.targetAgent)
+
                     log.info("${agent.pilot} destroyed ${target.targetAgent.pilot}")
                 }
             }
