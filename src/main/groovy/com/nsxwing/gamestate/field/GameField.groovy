@@ -26,13 +26,28 @@ public class GameField {
                     range = getRangeToTarget(enemyAgent, agent)
                     if (range <= 3 && range != 0) {
                         visibleEnemies.add(new Target(targetAgent: enemyAgent, range: range, obstructed: false, priority: getTargetPriority(enemyAgent)))
-                        break;
+                        break
                     }
                 }
             }
         }
 
         visibleEnemies
+    }
+
+    int getTargetCoverageFor(PlayerAgent agent, List<Position> potentialEnemyPositions) {
+        int numTargets = 0
+
+        for (Position position : potentialEnemyPositions) {
+            for (Coordinate coordinate : position.boxPoints) {
+                if (isTargetable(agent.getFiringArc(), coordinate)) {
+                    numTargets++
+                    break
+                }
+            }
+        }
+
+        numTargets
     }
 
     double getTargetPriority(PlayerAgent agent) {

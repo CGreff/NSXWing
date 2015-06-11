@@ -53,7 +53,7 @@ class CombatPhase {
         damage >= pilot.hullPoints
     }
 
-    //TODO: Fix this.
+    //TODO: Fix this. Autoblaster, Ten Numb, Kath, etc.
     private void doCombat(PlayerAgent agent, Target target) {
         List<AttackDie> attackDice = AttackDie.getDice(target.range == 1 ? agent.pilot.attack + 1 : agent.pilot.attack)
         attackDice.removeAll { it.result == DiceResult.NOTHING || it.result == DiceResult.FOCUS }

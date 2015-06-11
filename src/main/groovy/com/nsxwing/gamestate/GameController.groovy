@@ -30,8 +30,8 @@ class GameController {
     final Player scrub
     final GameField gameField
     private PlanningPhase planningPhase
-    private CombatPhase combatPhase
     private ActivationPhase activationPhase
+    private CombatPhase combatPhase
 
     GameController(Player champ, Player scrub) {
         this.champ = champ
@@ -39,8 +39,8 @@ class GameController {
         PLAYER_WITH_INITIATIVE = determineInitiative()
         gameField = new GameField()
         planningPhase = new PlanningPhase(champ, scrub, gameField)
-        combatPhase = new CombatPhase(champ, scrub, gameField)
         activationPhase = new ActivationPhase(champ, scrub, gameField)
+        combatPhase = new CombatPhase(champ, scrub, gameField)
     }
 
     Player doTurn() {

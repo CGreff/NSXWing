@@ -3,12 +3,15 @@ package com.nsxwing.phase
 import com.nsxwing.agents.Player
 import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.meta.PlayerIdentifier
-import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.gamestate.field.GameField
 import com.nsxwing.gamestate.field.Position
 import com.nsxwing.movement.Maneuver
 
 class PlanningPhase {
+
+    static final double STRENGTH_NO_TARGETS = 1000
+    static final double STRENGTH_MINIFIER = 0.1
+    static final double STRENGTH_MAXIMIZER = 1.0
 
     final Player champ
     final Player scrub
@@ -42,16 +45,15 @@ class PlanningPhase {
     }
 
     double getManeuverStrength(PlayerAgent agent, Maneuver maneuver) {
-        double strength
         Position position = maneuver.move(agent.position)
         List<PlayerAgent> enemies = agent.owningPlayer == PlayerIdentifier.CHAMP ? champ.agents.sort { it.pointCost * -1 } : scrub.agents.sort { it.pointCost * -1 }
-        List<Target> targets = gameField.getTargetsFor(champ, scrub, agent)
+        List<Position> potentialEnemyPositions = []
 
-        if (targets) {
-            strength = targets.sort { (it.targetAgent.pointCost * -1) - (0.1 * it.targetAgent.pilot.damageCards.size()) }.get(0).targetAgent.pointCost
-        } else {
-            strength = (1000 - (gameField.getDistanceBetween(position.center, enemies.get(0).position.center))) * (facingEnemies(position, enemies) ? 0.1 : 1.0)
+        for (PlayerAgent enemy : enemies) {
+            potentialEnemyPositions.addAll(getPositionsFor(enemy))
         }
+
+        int numTargets = gameField.getTargetCoverageFor(agent, potentialEnemyPositions)
 
         boolean hasNextMove = false
         for (Maneuver nextManeuver : agent.pilot.ship.maneuvers) {
@@ -61,7 +63,7 @@ class PlanningPhase {
             }
         }
 
-        hasNextMove ? strength : 0
+        hasNextMove ? numTargets : 0
     }
 
     private boolean facingEnemies(Position position, List<PlayerAgent> enemies) {
@@ -73,6 +75,15 @@ class PlanningPhase {
         }
 
         false
+    }
+
+    private List<Position> getPositionsFor(PlayerAgent agent) {
+        List<Position> positions = []
+        for (Maneuver maneuver : agent.pilot.ship.maneuvers) {
+            positions.add(maneuver.move(agent.position))
+        }
+
+        positions
     }
 
     private class RankedManeuver {
