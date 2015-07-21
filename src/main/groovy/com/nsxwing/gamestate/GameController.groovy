@@ -45,9 +45,9 @@ class GameController {
 
     Player doTurn() {
         log.info("Planning turn")
-        Map<PlayerAgent, Maneuver> chosenManeuvers = planningPhase.doPhase(getCombinedAgentList { it })
+        planningPhase.doPhase(getCombinedAgentList { it })
         log.info("Begin Activation Phase")
-        activationPhase.doPhase(getCombinedAgentList(ACTIVATION_COMPARATOR), chosenManeuvers)
+        activationPhase.doPhase(getCombinedAgentList(ACTIVATION_COMPARATOR))
         log.info("Begin Combat Phase")
         combatPhase.doPhase(getCombinedAgentList(COMBAT_COMPARATOR))
         checkForWinner()

@@ -10,6 +10,7 @@ import com.nsxwing.gamestate.GameController
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.GameField
 import com.nsxwing.gamestate.field.Position
+import com.nsxwing.utilities.BoardState
 import org.junit.Before
 import org.junit.Test
 
@@ -36,7 +37,8 @@ class PlanningPhaseTest {
     }
 
     @Test
-    void 'should not get into an infinite loop'() {
-        planningPhase.doPhase(controller.getCombinedAgentList { it })
+    void 'should be a testing ground'() {
+        List<BoardState> boardStates = planningPhase.buildFutureBoardStates(controller.getCombinedAgentList { it })
+        boardStates
     }
 }

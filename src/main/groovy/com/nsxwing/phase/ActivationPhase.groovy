@@ -23,29 +23,11 @@ class ActivationPhase {
         this.gameField = gameField
     }
 
-    void doPhase(List<PlayerAgent> agents, Map<PlayerAgent, Maneuver> chosenManeuvers) {
-        for(PlayerAgent agent : agents) {
-            //TODO: Advanced Sensors
-            maneuver(agent, chosenManeuvers.get(agent))
-            if (!agent.pilot.isStressed()) {
-                performAction(agent)
-            }
-        }
-    }
-
-    private void maneuver(PlayerAgent agent, Maneuver maneuver) {
-        if (!maneuver) {
-            log.info("${agent} flew off the board.")
-            Player owningPlayer = agent.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub
-            owningPlayer.agents.remove(agent)
-        } else {
-            log.info("${agent} is performing ${maneuver}")
-            agent.position = maneuver.move(agent.position)
-
-            if (maneuver.difficulty == ManeuverDifficulty.RED) {
-                agent.pilot.numStressTokens++
-            } else if (maneuver.difficulty == ManeuverDifficulty.GREEN && agent.pilot.isStressed()) {
-                agent.pilot.numStressTokens--
+    void doPhase(List<PlayerAgent> agents) {
+        agents.each {
+            it.doManeuver(it.owningPlayer == PlayerIdentifier.CHAMP ? champ : scrub)
+            if (!it.pilot.isStressed()) {
+                performAction(it)
             }
         }
     }

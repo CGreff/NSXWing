@@ -6,6 +6,7 @@ import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.gamestate.combat.FiringLine
 import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.movement.Maneuver
+import com.nsxwing.movement.heuristic.ManeuverStrength
 
 /**
  * Class describing the playing field. (3' x 3')
@@ -54,9 +55,48 @@ public class GameField {
         agent.pointCost / ((agent.pilot.hullPoints + agent.pilot.shieldPoints) * agent.pilot.agility)
     }
 
-    boolean isLegalManeuver(PlayerAgent agent, Maneuver maneuver) {
-        Position newPosition = maneuver.move(agent.position)
-        !isOutOfBounds(newPosition.boxPoints)
+    ManeuverStrength getManeuverStrength(PlayerAgent agent, Maneuver maneuver, Player champ, Player scrub) {
+        Position oldPosition = agent.position
+        agent.setPosition(maneuver.move(agent.position))
+
+        ManeuverStrength strength = getPositionStrength(agent, champ, scrub)
+
+        agent.setPosition(oldPosition)
+        strength
+    }
+
+    ManeuverStrength getPositionStrength(PlayerAgent agent, Player champ, Player scrub) {
+        Position position = agent.position
+        List<PlayerAgent> enemies = agent.owningPlayer == PlayerIdentifier.SCRUB ? champ.agents.sort {
+            it.pointCost * -1
+        } : scrub.agents.sort { it.pointCost * -1 }
+        List<Position> potentialEnemyPositions = []
+
+        for (PlayerAgent enemy : enemies) {
+            potentialEnemyPositions.addAll(getPositionsFor(enemy))
+        }
+
+        int numTargets = getTargetCoverageFor(agent, potentialEnemyPositions)
+        double distanceToEnemies = getDistanceBetween(agent.position.center, enemies.get(0).position.center) / X_SIZE
+
+        boolean hasNextMove = false
+        for (Maneuver nextManeuver : agent.pilot.ship.maneuvers) {
+            if (isLegalManeuver(position, nextManeuver)) {
+                hasNextMove = true
+                break
+            }
+        }
+
+        hasNextMove ? new ManeuverStrength(numTargets: numTargets, distanceToEnemies: distanceToEnemies) : new ManeuverStrength(numTargets: -1)
+    }
+
+    private List<Position> getPositionsFor(PlayerAgent agent) {
+        List<Position> positions = []
+        for (Maneuver maneuver : agent.pilot.ship.maneuvers) {
+            positions.add(maneuver.move(agent.position))
+        }
+
+        positions
     }
 
     boolean isLegalManeuver(Position position, Maneuver maneuver) {
