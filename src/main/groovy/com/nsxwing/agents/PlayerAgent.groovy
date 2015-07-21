@@ -14,7 +14,7 @@ import groovy.util.logging.Slf4j
 
 /**
  * An agent in charge of a single ship, and maintains its pilot, ship, equipment, etc. as well as
- * its current position and its current phase (activation (movement/ability), combat whatever).
+ * its current position and its current xphase (activation (movement/ability), combat whatever).
  */
 @Slf4j
 public class PlayerAgent {
@@ -54,7 +54,7 @@ public class PlayerAgent {
     void planManeuver(GameField gameField, Player champ, Player scrub) {
         RankedManeuver bestManeuver = null
         for (Maneuver maneuver : pilot.ship.maneuvers) {
-            if (gameField.isLegalManeuver(this.position, maneuver)) {
+            if (gameField.isLegalManeuver(this.position, maneuver) && canPerformManeuver(maneuver)) {
                 ManeuverStrength strength = gameField.getManeuverStrength(this, maneuver, champ, scrub)
                 if (!bestManeuver) {
                     bestManeuver = new RankedManeuver(maneuver: maneuver, strength: strength)
@@ -65,6 +65,10 @@ public class PlayerAgent {
         }
 
         plannedManeuver = bestManeuver?.maneuver
+    }
+
+    boolean canPerformManeuver(Maneuver maneuver) {
+        !(maneuver.difficulty == ManeuverDifficulty.RED && this.pilot.isStressed());
     }
 
     ManeuverStrength getPositionStrength(GameField gameField, Player champ, Player scrub) {
