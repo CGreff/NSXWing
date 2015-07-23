@@ -56,10 +56,15 @@ class Game {
             turnNumber++
             log.info("Starting turn ${turnNumber}")
             winner = controller.doTurn()
+
+            if (turnNumber == 100) {
+                winner = champ.pointsRemaining >= scrub.pointsRemaining ? champ : scrub
+            }
         }
+
 
         Long gameTime = startTime.until(LocalDateTime.now(), ChronoUnit.MILLIS)
         log.info("${winner} won on turn ${turnNumber} in ${gameTime}ms!")
-        new GameRecord(winner: winner.identifier, numberOfTurns: turnNumber, pointsRemaining: winner.getPointsRemaining())
+        new GameRecord(winner: winner?.identifier, numberOfTurns: turnNumber, pointsRemaining: winner?.getPointsRemaining())
     }
 }
