@@ -68,15 +68,6 @@ class CombatPhase {
 
     //TODO: Fix this. Autoblaster, Ten Numb, Kath, etc.
     private void doCombat(PlayerAgent agent, Target target) {
-        List<AttackDie> attackDice = AttackDie.getDice(target.range == 1 ? agent.pilot.attack + 1 : agent.pilot.attack)
-        attackDice.removeAll { it.result == DiceResult.NOTHING || it.result == DiceResult.FOCUS }
-        List<EvadeDie> evadeDice  = EvadeDie.getDice(target.range > 2 ? target.targetAgent.pilot.agility + 1 : target.targetAgent.pilot.agility)
-        evadeDice.removeAll { it.result == DiceResult.NOTHING || it.result == DiceResult.FOCUS }
-
-        for (int i = 0; i < attackDice.size() - evadeDice.size(); i++) {
-            //TODO: Crits
-            target.targetAgent.pilot.sufferDamage(false)
-            log.info("${target.targetAgent} suffered a damage!")
-        }
+        agent.pilot.rollAttackDice(target)
     }
 }

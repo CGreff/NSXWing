@@ -18,7 +18,7 @@ class PositionTest {
 
     @Test
     void 'should get the correct box points for a center point at 0 radians clockwise'() {
-        List<Coordinate> boxPoints = startPosition.getBoxPoints()
+        List<Coordinate> boxPoints = startPosition.getBoxPoints(false)
 
         assert Math.abs(boxPoints.get(0).x + 20) < EPSILON
         assert Math.abs(boxPoints.get(0).y - 20) < EPSILON
@@ -33,7 +33,7 @@ class PositionTest {
     @Test
     void 'should get the correct box points for a center point at pi/4 radians clockwise'() {
         startPosition.heading = Math.PI/4
-        List<Coordinate> boxPoints = startPosition.getBoxPoints()
+        List<Coordinate> boxPoints = startPosition.getBoxPoints(false)
 
         assert Math.abs(boxPoints.get(0).x) < EPSILON
         assert Math.abs(boxPoints.get(0).y - 28.284271247461902) < EPSILON
@@ -49,7 +49,7 @@ class PositionTest {
     void 'should get the correct box points for a non-zero center point at pi/4 radians clockwise'() {
         startPosition.center = new Coordinate(x: 40, y: 80)
         startPosition.heading = Math.PI/4
-        List<Coordinate> boxPoints = startPosition.getBoxPoints()
+        List<Coordinate> boxPoints = startPosition.getBoxPoints(false)
 
         assert Math.abs(boxPoints.get(0).x - 40) < EPSILON
         assert Math.abs(boxPoints.get(0).y - 108.284271247461902) < EPSILON

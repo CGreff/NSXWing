@@ -13,6 +13,6 @@ class Focus extends Action {
     @Override
     void execute(PlayerAgent target) {
         super.execute(target)
-        availableFocusTokens++
+        target.pilot.numFocusTokens++
     }
 }

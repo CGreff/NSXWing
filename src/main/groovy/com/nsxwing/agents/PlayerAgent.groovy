@@ -1,8 +1,12 @@
 package com.nsxwing.agents
 
 import com.nsxwing.components.meta.PlayerIdentifier
+import com.nsxwing.components.meta.dice.AttackDie
+import com.nsxwing.components.meta.dice.DiceResult
+import com.nsxwing.components.meta.dice.EvadeDie
 import com.nsxwing.components.pilots.Pilot
 import com.nsxwing.gamestate.combat.FiringLine
+import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.gamestate.field.Coordinate
 import com.nsxwing.gamestate.field.GameField
 import com.nsxwing.gamestate.field.Position
@@ -31,7 +35,7 @@ public class PlayerAgent {
      */
     //TODO: Implement those other arcs.
     List<FiringLine> getFiringArc() {
-        List<Coordinate> boxPoints = position.getBoxPoints()
+        List<Coordinate> boxPoints = position.getBoxPoints(pilot.ship.isHuge)
 
         [new FiringLine([
                 originX: position.center.x,

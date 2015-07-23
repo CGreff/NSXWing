@@ -3,6 +3,7 @@ package com.nsxwing.gamestate.field
 import com.nsxwing.agents.Player
 import com.nsxwing.agents.PlayerAgent
 import com.nsxwing.components.meta.PlayerIdentifier
+import com.nsxwing.gamestate.combat.FiringArc
 import com.nsxwing.gamestate.combat.FiringLine
 import com.nsxwing.gamestate.combat.Target
 import com.nsxwing.movement.Maneuver
@@ -23,7 +24,7 @@ public class GameField {
 
         for (PlayerAgent enemyAgent : opponent.agents) {
             for (Coordinate shipCoordinates : enemyAgent.position.boxPoints) {
-                if (isTargetable(agent.getFiringArc(), shipCoordinates)) {
+                if (isTargetable(agent.getFiringArc(), shipCoordinates) || agent.pilot.ship.primaryArc == FiringArc.TURRET) {
                     range = getRangeToTarget(enemyAgent, agent)
                     if (range <= 3 && range != 0) {
                         visibleEnemies.add(new Target(targetAgent: enemyAgent, range: range, obstructed: false, priority: getTargetPriority(enemyAgent)))
@@ -41,7 +42,7 @@ public class GameField {
 
         for (Position position : potentialEnemyPositions) {
             for (Coordinate coordinate : position.boxPoints) {
-                if (isTargetable(agent.getFiringArc(), coordinate)) {
+                if (isTargetable(agent.getFiringArc(), coordinate) || agent.pilot.ship.primaryArc == FiringArc.TURRET) {
                     numTargets++
                     break
                 }

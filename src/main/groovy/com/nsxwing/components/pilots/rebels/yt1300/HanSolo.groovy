@@ -1,56 +1,28 @@
-package com.nsxwing.components.pilots
+package com.nsxwing.components.pilots.rebels.yt1300
 
-import com.nsxwing.components.equipment.EquipmentSlot
-import com.nsxwing.components.meta.damage.DamageCard
-import com.nsxwing.components.meta.damage.DamageDeck
 import com.nsxwing.components.meta.dice.AttackDie
 import com.nsxwing.components.meta.dice.DiceResult
 import com.nsxwing.components.meta.dice.EvadeDie
 import com.nsxwing.gamestate.combat.Target
 import groovy.util.logging.Slf4j
 
-/**
- * Class describing the Pilot. Includes Shield and Hull values instead of the ship because the YT-1300
- * has variable shields, hull, and attack based on the chosen pilots.
- */
 @Slf4j
-public abstract class Pilot {
-    Ship ship
-    Closure pilotAbility = { it }
-    Set<EquipmentSlot> equipment = []
-    List<DamageCard> damageCards = []
-    int pilotSkill
-    int attack
-    int agility
-    int shieldPoints
-    int hullPoints
-    int pointCost
-    boolean isUnique
-    int numStressTokens = 0
-    int numFocusTokens = 0
-    int numEvadeTokens = 0
+class HanSolo extends YT1300 {
 
-    void sufferDamage(boolean isCritical) {
-        if (shieldPoints) {
-            shieldPoints--
-        } else {
-            DamageCard damageCard = DamageDeck.draw()
-            if (isCritical) {
-                damageCard.isCritical = true
-                damageCard.resolveCrit(this)
-            }
-
-            damageCards.add(damageCard)
-        }
+    public HanSolo() {
+        super()
+        pilotSkill = 9
+        pointCost = 46
+        isUnique = true
     }
 
-    boolean isStressed() {
-        numStressTokens > 0
-    }
-
+    @Override
     List<DiceResult> rollAttackDice(Target target) {
         boolean spentFocus = false
-        List<AttackDie> attackDice = AttackDie.getDice(target.range == 1 ? attack + 1 : attack)
+        List<AttackDie> attackDice = tryAttackDice(target)
+        if (attackDice.size() < 2) {
+            attackDice.collect { it.roll() }
+        }
         attackDice.collect {
             if (it.result == DiceResult.FOCUS && numFocusTokens > 0) {
                 it.result = DiceResult.SUCCESS
@@ -59,7 +31,6 @@ public abstract class Pilot {
             it
         }
         spentFocus ? numFocusTokens-- : null
-        spentFocus = false
         attackDice.removeAll { it.result == DiceResult.NOTHING || it.result == DiceResult.FOCUS }
 
         List<EvadeDie> evadeDice  = EvadeDie.getDice(target.range > 2 ? target.targetAgent.pilot.agility + 1 : target.targetAgent.pilot.agility)
@@ -81,8 +52,10 @@ public abstract class Pilot {
         }
     }
 
-    @Override
-    String toString() {
-        "${this.getClass().simpleName}:(${hullPoints}-${damageCards.size()}, ${shieldPoints})"
+    private List<AttackDie> tryAttackDice(Target target) {
+        List<AttackDie> attackDice = AttackDie.getDice(target.range == 1 ? attack + 1 : attack)
+
+        attackDice.removeAll { it.result == DiceResult.NOTHING }
+        attackDice
     }
 }

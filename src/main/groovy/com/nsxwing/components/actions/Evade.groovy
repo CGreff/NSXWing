@@ -13,6 +13,6 @@ class Evade extends Action {
     @Override
     void execute(PlayerAgent target) {
         super.execute(target)
-        availableEvadeTokens++
+        target.pilot.numEvadeTokens++
     }
 }

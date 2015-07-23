@@ -8,7 +8,7 @@ public class Position {
     //in Radians, measured CW from X axis
     double heading
 
-    List<Coordinate> getBoxPoints() {
+    List<Coordinate> getBoxPoints(boolean isHugeShip = false) {
         List<Coordinate> boxPoints = [
                 new Coordinate(x: -20, y: 20),
                 new Coordinate(x: 20, y: 20),

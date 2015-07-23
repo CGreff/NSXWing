@@ -7,6 +7,7 @@ import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.components.pilots.imperials.tieadvanced.TempestSquadronPilot
 import com.nsxwing.components.pilots.imperials.tiefighter.AcademyPilot
 import com.nsxwing.components.pilots.imperials.tiefighter.ObsidianSquadronPilot
+import com.nsxwing.components.pilots.rebels.yt1300.HanSolo
 import com.nsxwing.gamestate.GameController
 import com.nsxwing.utilities.GameRecord
 import groovy.util.logging.Slf4j
@@ -30,12 +31,10 @@ class Game {
 
         //TODO: Implement list building.
         champ.agents = [
-                new PlayerAgent(pilot: new TempestSquadronPilot(), owningPlayer: PlayerIdentifier.CHAMP, pointCost: 21),
-                new PlayerAgent(pilot: new TempestSquadronPilot(), owningPlayer: PlayerIdentifier.CHAMP, pointCost: 21)
+                new PlayerAgent(pilot: new HanSolo(), owningPlayer: PlayerIdentifier.CHAMP, pointCost: 46)
         ]
 
         scrub.agents = [
-                new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12),
                 new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12),
                 new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12),
                 new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12)
