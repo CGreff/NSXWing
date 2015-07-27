@@ -1,5 +1,6 @@
 package com.nsxwing.components.meta.damage
 
+import com.nsxwing.components.equipment.Equipment
 import com.nsxwing.components.equipment.EquipmentType
 import com.nsxwing.components.pilots.Pilot
 
@@ -14,6 +15,7 @@ class MunitionsFailure extends DamageCard {
     @Override
     void resolveCrit(Pilot pilot) {
         //Removes the lowest point cost secondary weapon.
-        pilot.equipment.findAll { SECONDARY_WEAPON_TYPES.contains(it.type) }.sort { it.equipment.pointCost }.remove(0)
+        List<Equipment> secondaryWeapons = pilot.equipment.findAll { SECONDARY_WEAPON_TYPES.contains(it.type) }.sort { it.equipment.pointCost }
+        secondaryWeapons.size() > 0 ? secondaryWeapons.remove(0) : null;
     }
 }

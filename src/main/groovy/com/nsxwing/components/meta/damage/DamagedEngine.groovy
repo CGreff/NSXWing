@@ -13,7 +13,7 @@ class DamagedEngine extends DamageCard {
 
     @Override
     void resolveCrit(Pilot pilot) {
-        for (Turn turn : (Turn)pilot.ship.maneuvers.findAll { it instanceof Turn }) {
+        for (Turn turn : pilot.ship.maneuvers.findAll { it instanceof Turn }) {
             turn.difficulty = ManeuverDifficulty.RED
         }
     }

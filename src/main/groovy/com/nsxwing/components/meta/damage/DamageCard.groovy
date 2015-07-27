@@ -11,6 +11,6 @@ abstract class DamageCard {
     DamageType damageType
 
     void resolveCrit(Pilot pilot) {
-
+        //Do nothing.
     }
 }

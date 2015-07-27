@@ -6,8 +6,11 @@ import com.nsxwing.components.Faction
 import com.nsxwing.components.meta.PlayerIdentifier
 import com.nsxwing.components.pilots.imperials.tieadvanced.TempestSquadronPilot
 import com.nsxwing.components.pilots.imperials.tiefighter.AcademyPilot
+import com.nsxwing.components.pilots.imperials.tiefighter.Howlrunner
 import com.nsxwing.components.pilots.imperials.tiefighter.ObsidianSquadronPilot
+import com.nsxwing.components.pilots.rebels.bwing.BlueSquadronPilot
 import com.nsxwing.components.pilots.rebels.yt1300.HanSolo
+import com.nsxwing.components.pilots.rebels.z95.BanditSquadronPilot
 import com.nsxwing.gamestate.GameController
 import com.nsxwing.utilities.GameRecord
 import groovy.util.logging.Slf4j
@@ -35,9 +38,9 @@ class Game {
         ]
 
         scrub.agents = [
-                new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12),
-                new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12),
-                new PlayerAgent(pilot: new AcademyPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 12)
+                new PlayerAgent(pilot: new ObsidianSquadronPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 13),
+                new PlayerAgent(pilot: new ObsidianSquadronPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 13),
+                new PlayerAgent(pilot: new ObsidianSquadronPilot(), owningPlayer: PlayerIdentifier.SCRUB, pointCost: 13)
         ]
 
         champ.placeUnits()

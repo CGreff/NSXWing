@@ -53,7 +53,7 @@ public class GameField {
     }
 
     double getTargetPriority(PlayerAgent agent) {
-        agent.pointCost / ((agent.pilot.hullPoints + agent.pilot.shieldPoints) * agent.pilot.agility)
+        agent.pointCost / ((agent.pilot.hullPoints + agent.pilot.shieldPoints) * (agent.pilot.agility + 1))
     }
 
     ManeuverStrength getManeuverStrength(PlayerAgent agent, Maneuver maneuver, Player champ, Player scrub) {
